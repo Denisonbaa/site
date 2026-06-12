@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — BAA Denison Newsletter</title>
+  <meta name="description" content="{{ description or title }}">
+  <meta property="og:title" content="{{ title }} — BAA Denison Newsletter">
+  <meta property="og:description" content="{{ description or title }}">
+  <meta property="og:image" content="{{ heroImage or '/og-preview.png' }}">
+  <meta property="og:type" content="article">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="BAA Newsletter" href="/newsletter.rss">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-text">BAA <span class="logo-accent">Denison</span></div>
+  </div>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/perspectives/">Perspectives</a></li>
+    <li><a href="/newsletter/" class="active">Newsletter</a></li>
+    <li><a href="/member-hub/">Member Hub</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Newsletter issue bar -->
+<div class="newsletter-bar">
+  <span class="label">BAA Denison Newsletter</span>
+  <span class="issue-id">{{ issueLabel or title }}</span>
+  <span class="label">{{ date | readableDate }}</span>
+</div>
+
+<!-- Full-bleed hero with gradient overlay -->
+<div class="nl-hero">
+  {% if heroImage %}
+  <img class="nl-hero-img" src="{{ heroImage }}" alt="{{ heroImageAlt or title }}">
+  {% else %}
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,#9B2335 0%,#2C2C2C 100%);"></div>
+  {% endif %}
+  <div class="nl-hero-overlay"></div>
+  <div class="nl-hero-content">
+    <div class="nl-hero-eyebrow">
+      <span class="dot"></span>
+      <span>{{ issueLabel or "BAA Newsletter" }}</span>
+    </div>
+    <h1>{{ title }}</h1>
+    {% if description %}<p class="nl-hero-sub">{{ description }}</p>{% endif %}
+  </div>
+</div>
+
+<!-- Main content area -->
+<div class="nl-wrap">
+  <div class="nl-main-grid">
+    <div class="nl-feature">
+      {{ content | safe }}
+    </div>
+
+    <aside class="nl-sidebar">
+      {% if fundGoal %}
+      <div class="sidebar-card">
+        <div class="sidebar-section-label">Scholarship Fund</div>
+        <h3>{{ fundTitle or "BAA Scholarship Fund" }}</h3>
+        <p>{{ fundBody or "Supporting Black Denisonian scholars every year." }}</p>
+        {% if fundCurrent and fundGoal %}
+        <div class="progress-label">
+          <span>Raised: ${{ fundCurrent | numberString }}</span>
+          <span>Goal: ${{ fundGoal | numberString }}</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width:{{ ((fundCurrent / fundGoal) * 100) | round }}%"></div>
+        </div>
+        <p class="progress-note">{{ fundNote or "" }}</p>
+        {% endif %}
+        {% if fundLink %}<a href="{{ fundLink }}" class="read-more">Give Now →</a>{% endif %}
+      </div>
+      {% endif %}
+
+      {% if stats %}
+      <div class="sidebar-card green">
+        <div class="sidebar-section-label green">By the Numbers</div>
+        <div class="stat-grid">
+          {% for s in stats %}
+          <div class="stat-cell">
+            <span class="stat-number">{{ s.value }}</span>
+            <div class="stat-desc">{{ s.label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="sidebar-card">
+        <div class="sidebar-section-label">Past Issues</div>
+        {% for issue in collections.newsletter | reverse %}
+        {% if issue.url != page.url %}
+        <p style="margin-bottom:0.5rem"><a href="{{ issue.url }}" style="color:var(--crimson);text-decoration:none;font-family:'EB Garamond',serif;font-size:1.05rem">{{ issue.data.title }}</a>
+        <br><small style="color:#888;font-size:0.75rem">{{ issue.data.issueLabel }}</small></p>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Quote band (if pullQuote set in front matter) -->
+{% if pullQuote %}
+<div class="quote-band">
+  <blockquote>
+    <p>"{{ pullQuote }}"</p>
+    {% if pullQuoteAuthor %}<cite>— {{ pullQuoteAuthor }}</cite>{% endif %}
+  </blockquote>
+</div>
+{% endif %}
+
+<!-- Two-column stories (if stories array set) -->
+{% if stories %}
+<div class="nl-wrap">
+  <div class="nl-two-col">
+    {% for story in stories %}
+    <div class="story-card">
+      {% if story.image %}<img src="{{ story.image }}" alt="{{ story.title }}">{% endif %}
+      <div class="sidebar-section-label">{{ story.tag or "Story" }}</div>
+      <h3>{{ story.title }}</h3>
+      <p>{{ story.body }}</p>
+      {% if story.link %}<a href="{{ story.link }}" class="read-more">{{ story.linkText or "Read more" }} →</a>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<!-- Events band (if events array set) -->
+{% if events %}
+<div class="events-band">
+  <div class="nl-wrap">
+    <div class="events-header">
+      <h2>Upcoming Events</h2>
+      <a href="/member-hub/">See All →</a>
+    </div>
+    <div class="events-grid">
+      {% for event in events %}
+      <div class="event-item">
+        <div class="event-date">
+          <span class="month">{{ event.month }}</span>
+          <span class="day">{{ event.day }}</span>
+        </div>
+        <div class="event-info">
+          <h4>{{ event.title }}</h4>
+          <p>{{ event.location or "" }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="nl-footer">
+  <div class="brand">Black Alumni Association — Denison University</div>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/newsletter/">All Issues</a>
+    <a href="/contact/">Contact</a>
+    <a href="/newsletter.rss">RSS Feed</a>
+  </nav>
+</div>
+
+</body>
+</html>

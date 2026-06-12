@@ -1,0 +1,51 @@
+---
+layout: base.njk
+title: Newsletter — Denison BAA
+description: The BAA Denison quarterly newsletter — news, alumni spotlights, scholarship updates, and more.
+permalink: /newsletter/
+---
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-eyebrow">Quarterly Publication</div>
+  <h1 class="page-title">Newsletter</h1>
+  <p class="page-subtitle">News, spotlights, and updates — from Black Denisonians, for Black Denisonians.</p>
+</section>
+
+<!-- NEWSLETTER LISTING -->
+<section class="newsletter-index-section">
+  <div class="section-header">
+    <div class="section-label">All Issues</div>
+    <h2 class="section-title">The BAA Archive</h2>
+  </div>
+
+  <div class="newsletter-grid">
+    {% for issue in collections.newsletter %}
+    <a href="{{ issue.url }}" class="newsletter-card">
+      <div class="nl-issue-col">
+        <div class="nl-issue-label">{{ issue.data.issueLabel or issue.data.title }}</div>
+      </div>
+      <div class="nl-body">
+        <div class="nl-meta">{{ issue.date | readableDate }}{% if issue.data.issueLabel %} · {{ issue.data.issueLabel }}{% endif %}</div>
+        <div class="nl-title">{{ issue.data.title }}</div>
+        {% if issue.data.description %}<p class="nl-summary">{{ issue.data.description }}</p>{% endif %}
+      </div>
+      <div class="nl-arrow">→</div>
+    </a>
+    {% else %}
+    <p style="font-size:15px;color:#888;padding:2rem 0">No issues published yet. Check back soon.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- SUBSCRIBE CTA -->
+<section class="cta-section">
+  <div class="cta-left">
+    <h2>Get the newsletter in your inbox.</h2>
+    <p>New issues go out quarterly. We don't share your email. We don't spam. Just the BAA, keeping you connected.</p>
+  </div>
+  <div class="cta-buttons">
+    <a href="mailto:baaDenison@denison.edu?subject=Newsletter%20Subscribe" class="btn-white">Subscribe</a>
+    <a href="/newsletter.rss" class="btn-ghost">RSS Feed</a>
+  </div>
+</section>

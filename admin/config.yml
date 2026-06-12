@@ -1,0 +1,154 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Enables the editorial workflow: Draft → In Review → Ready → Publish
+publish_mode: editorial_workflow
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+
+  # ── NEWSLETTER ISSUES ─────────────────────────────────────────
+  - name: "newsletter"
+    label: "Newsletter Issues"
+    label_singular: "Newsletter Issue"
+    folder: "newsletter"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - label: "Issue Title"
+        name: "title"
+        widget: "string"
+        hint: "e.g. Building Infrastructure: The BAA's Year of Foundations"
+      - label: "Issue Label"
+        name: "issueLabel"
+        widget: "string"
+        hint: "e.g. Vol. 1, No. 2 — Summer 2026"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: "Short Description (for RSS & listing)"
+        name: "description"
+        widget: "text"
+        hint: "1–2 sentences. Appears in the newsletter listing and email subject."
+      - label: "Hero Image"
+        name: "heroImage"
+        widget: "image"
+        required: false
+        hint: "Full-bleed image behind the issue title. Leave blank for a gradient."
+      - label: "Hero Image Alt Text"
+        name: "heroImageAlt"
+        widget: "string"
+        required: false
+      - label: "Pull Quote"
+        name: "pullQuote"
+        widget: "string"
+        required: false
+        hint: "Displayed in the green quote band below the main story."
+      - label: "Pull Quote Author"
+        name: "pullQuoteAuthor"
+        widget: "string"
+        required: false
+      - label: "Scholarship Fund Title"
+        name: "fundTitle"
+        widget: "string"
+        required: false
+        default: "BAA Scholarship Fund"
+      - label: "Scholarship Fund Body"
+        name: "fundBody"
+        widget: "text"
+        required: false
+      - label: "Scholarship Raised ($)"
+        name: "fundCurrent"
+        widget: "number"
+        required: false
+      - label: "Scholarship Goal ($)"
+        name: "fundGoal"
+        widget: "number"
+        required: false
+      - label: "Scholarship Note"
+        name: "fundNote"
+        widget: "string"
+        required: false
+      - label: "Scholarship Fund Link"
+        name: "fundLink"
+        widget: "string"
+        required: false
+      - label: "Stats (sidebar)"
+        name: "stats"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Value", name: "value", widget: "string" }
+          - { label: "Label", name: "label", widget: "string" }
+      - label: "Story Cards (two-column section)"
+        name: "stories"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Tag", name: "tag", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "text" }
+          - { label: "Link URL", name: "link", widget: "string", required: false }
+          - { label: "Link Text", name: "linkText", widget: "string", required: false }
+      - label: "Events (charcoal band)"
+        name: "events"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Month (3-letter)", name: "month", widget: "string", hint: "e.g. APR" }
+          - { label: "Day", name: "day", widget: "string" }
+          - { label: "Event Title", name: "title", widget: "string" }
+          - { label: "Location / Details", name: "location", widget: "string", required: false }
+      - label: "Body (main article content)"
+        name: "body"
+        widget: "markdown"
+        hint: "This is the main feature story. Use ## headings to create sections."
+
+  # ── PERSPECTIVES (ESSAYS) ─────────────────────────────────────
+  - name: "perspectives"
+    label: "Perspectives Essays"
+    label_singular: "Essay"
+    files:
+      - label: "Essay 01 — What Denison Owes Us"
+        name: "perspectives-01"
+        file: "perspectives-01.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - label: "Essay 02 — Finding My People"
+        name: "perspectives-02"
+        file: "perspectives-02.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+
+  # ── SITE PAGES ────────────────────────────────────────────────
+  - name: "pages"
+    label: "Site Pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "index.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - label: "About Page"
+        name: "about"
+        file: "about.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - label: "Contact Page"
+        name: "contact"
+        file: "contact.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or "Denison Black Alumni Association" }}</title>
+  <meta name="description" content="{{ description or 'Denison Black Alumni Association — Building community, legacy, and power for Black Denisonians.' }}">
+  <meta property="og:title" content="{{ title or 'Denison Black Alumni Association' }}">
+  <meta property="og:description" content="{{ description or 'Building community, legacy, and power for Black Denisonians.' }}">
+  <meta property="og:image" content="/og-preview.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="BAA Newsletter" href="/newsletter.rss">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="{{ bodyClass or '' }}">
+
+<nav>
+  <div class="logo">
+    <div class="logo-text">BAA <span class="logo-accent">Denison</span></div>
+  </div>
+  <ul>
+    <li><a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a></li>
+    <li><a href="/about/" {% if page.url == "/about/" %}class="active"{% endif %}>About</a></li>
+    <li><a href="/perspectives/" {% if page.url == "/perspectives/" or "/perspectives-" in page.url %}class="active"{% endif %}>Perspectives</a></li>
+    <li><a href="/newsletter/" {% if page.url == "/newsletter/" or "/newsletter/" in page.url %}class="active"{% endif %}>Newsletter</a></li>
+    <li><a href="/member-hub/" {% if page.url == "/member-hub/" %}class="active"{% endif %}>Member Hub</a></li>
+    <li><a href="/contact/" {% if page.url == "/contact/" %}class="active"{% endif %}>Contact</a></li>
+  </ul>
+</nav>
+
+{{ content | safe }}
+
+<footer>
+  <div>
+    <div class="f-logo">Black Alumni Association — <span>Denison University</span></div>
+    <div class="f-tagline">Building community, legacy, and power for Black Denisonians.</div>
+  </div>
+  <div class="social">
+    <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="#" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:baaDenison@denison.edu">Email</a>
+    <a href="/newsletter/">Newsletter</a>
+  </div>
+</footer>
+
+</body>
+</html>
