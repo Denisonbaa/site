@@ -6,15 +6,15 @@ eleventyExcludeFromCollections: true
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>BAA Denison Newsletter</title>
-    <link>https://denisonbaa.netlify.app</link>
+    <link>https://denison-baa.netlify.app</link>
     <description>The Black Alumni Association of Denison University — quarterly newsletter.</description>
     <language>en-us</language>
-    <atom:link href="https://denisonbaa.netlify.app/newsletter.rss" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://denison-baa.netlify.app/newsletter.rss" rel="self" type="application/rss+xml"/>
     {% for item in collections.newsletter %}
     <item>
       <title>{{ item.data.title | escape }}</title>
-      <link>https://denisonbaa.netlify.app{{ item.url }}</link>
-      <guid isPermaLink="true">https://denisonbaa.netlify.app{{ item.url }}</guid>
+      <link>https://denison-baa.netlify.app{{ item.url }}</link>
+      <guid isPermaLink="true">https://denison-baa.netlify.app{{ item.url }}</guid>
       <pubDate>{{ item.date | dateToRfc2822 }}</pubDate>
       <description>{{ item.data.description | escape }}</description>
     </item>
