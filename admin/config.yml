@@ -117,15 +117,21 @@ collections:
     label: "Perspectives Essays"
     label_singular: "Essay"
     files:
-      - label: "Essay 01 — What Denison Owes Us"
+      - label: "Essay 01 — Organize or Concede"
         name: "perspectives-01"
         file: "perspectives-01.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
-      - label: "Essay 02 — Finding My People"
+      - label: "Essay 02 — Turning Good Intentions Into Durable Impact"
         name: "perspectives-02"
         file: "perspectives-02.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - label: "Essay 03 — Events Don't Build Institutions"
+        name: "perspectives-03"
+        file: "perspectives-03.njk"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
