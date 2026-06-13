@@ -1,0 +1,19 @@
+---
+layout: base.njk
+---
+<div class="essay-hero">
+  <a href="/perspectives/" class="back-link">← Back to Perspectives</a>
+  <div class="essay-issue">{{ issue }}</div>
+  <h1 class="essay-title">{{ essayTitle }}</h1>
+  <p class="essay-subtitle">{{ subtitle }}</p>
+</div>
+
+<div class="essay-content">
+  {{ content | safe }}
+</div>
+
+<nav class="essay-nav">
+  {% if prevLink %}<a href="{{ prevLink }}">← {{ prevLabel }}</a>{% else %}<span></span>{% endif %}
+  <span class="center">{{ volNum }}</span>
+  {% if nextLink %}<a href="{{ nextLink }}">{{ nextLabel }} →</a>{% else %}<a href="/perspectives/">All Perspectives →</a>{% endif %}
+</nav>

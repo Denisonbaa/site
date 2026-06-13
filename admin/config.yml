@@ -119,22 +119,49 @@ collections:
     files:
       - label: "Essay 01 — Organize or Concede"
         name: "perspectives-01"
-        file: "perspectives-01.njk"
+        file: "perspectives-01.md"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
+          - { label: "Issue Label", name: "issue", widget: "string", hint: "e.g. Perspectives · Vol. 01" }
+          - { label: "Essay Title", name: "essayTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Volume", name: "volNum", widget: "string", hint: "e.g. Vol. 01 of 03" }
+          - { label: "Previous Essay Link", name: "prevLink", widget: "string", required: false }
+          - { label: "Previous Essay Label", name: "prevLabel", widget: "string", required: false }
+          - { label: "Next Essay Link", name: "nextLink", widget: "string", required: false }
+          - { label: "Next Essay Label", name: "nextLabel", widget: "string", required: false }
+          - { label: "Essay Body", name: "body", widget: "markdown" }
       - label: "Essay 02 — Turning Good Intentions Into Durable Impact"
         name: "perspectives-02"
-        file: "perspectives-02.njk"
+        file: "perspectives-02.md"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
+          - { label: "Issue Label", name: "issue", widget: "string", hint: "e.g. Perspectives · Vol. 02" }
+          - { label: "Essay Title", name: "essayTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Volume", name: "volNum", widget: "string", hint: "e.g. Vol. 02 of 03" }
+          - { label: "Previous Essay Link", name: "prevLink", widget: "string", required: false }
+          - { label: "Previous Essay Label", name: "prevLabel", widget: "string", required: false }
+          - { label: "Next Essay Link", name: "nextLink", widget: "string", required: false }
+          - { label: "Next Essay Label", name: "nextLabel", widget: "string", required: false }
+          - { label: "Essay Body", name: "body", widget: "markdown" }
       - label: "Essay 03 — Events Don't Build Institutions"
         name: "perspectives-03"
-        file: "perspectives-03.njk"
+        file: "perspectives-03.md"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
+          - { label: "Issue Label", name: "issue", widget: "string", hint: "e.g. Perspectives · Vol. 03" }
+          - { label: "Essay Title", name: "essayTitle", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Volume", name: "volNum", widget: "string", hint: "e.g. Vol. 03 of 03" }
+          - { label: "Previous Essay Link", name: "prevLink", widget: "string", required: false }
+          - { label: "Previous Essay Label", name: "prevLabel", widget: "string", required: false }
+          - { label: "Next Essay Link", name: "nextLink", widget: "string", required: false }
+          - { label: "Next Essay Label", name: "nextLabel", widget: "string", required: false }
+          - { label: "Essay Body", name: "body", widget: "markdown" }
 
   # ── SITE PAGES ────────────────────────────────────────────────
   - name: "pages"
