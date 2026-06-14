@@ -35,6 +35,13 @@ module.exports = function(eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  // Perspectives collection — sorted oldest first (Vol. 01 first)
+  eleventyConfig.addCollection("perspectives", function(collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("perspectives/*.md")
+      .sort((a, b) => a.date - b.date);
+  });
+
   return {
     templateFormats: ["njk", "md", "html"],
     markdownTemplateEngine: "njk",
