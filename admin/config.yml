@@ -3,6 +3,9 @@ backend:
   branch: main
 
 
+
+# Enables the editorial workflow: Draft → In Review → Ready → Publish
+publish_mode: editorial_workflow
 media_folder: "public/images"
 public_folder: "/images"
 
