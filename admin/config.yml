@@ -131,7 +131,7 @@ collections:
           - { label: "Previous Essay Label", name: "prevLabel", widget: "string", required: false }
           - { label: "Next Essay Link", name: "nextLink", widget: "string", required: false }
           - { label: "Next Essay Label", name: "nextLabel", widget: "string", required: false }
-          - { label: "Essay Body", name: "body", widget: "markdown" }
+          - { label: "Essay Body", name: "body", widget: "text" }
       - label: "Essay 02 — Turning Good Intentions Into Durable Impact"
         name: "perspectives-02"
         file: "perspectives-02.md"
@@ -146,7 +146,7 @@ collections:
           - { label: "Previous Essay Label", name: "prevLabel", widget: "string", required: false }
           - { label: "Next Essay Link", name: "nextLink", widget: "string", required: false }
           - { label: "Next Essay Label", name: "nextLabel", widget: "string", required: false }
-          - { label: "Essay Body", name: "body", widget: "markdown" }
+          - { label: "Essay Body", name: "body", widget: "text" }
       - label: "Essay 03 — Events Don't Build Institutions"
         name: "perspectives-03"
         file: "perspectives-03.md"
@@ -161,7 +161,7 @@ collections:
           - { label: "Previous Essay Label", name: "prevLabel", widget: "string", required: false }
           - { label: "Next Essay Link", name: "nextLink", widget: "string", required: false }
           - { label: "Next Essay Label", name: "nextLabel", widget: "string", required: false }
-          - { label: "Essay Body", name: "body", widget: "markdown" }
+          - { label: "Essay Body", name: "body", widget: "text" }
 
   # ── SITE PAGES ────────────────────────────────────────────────
   - name: "pages"
