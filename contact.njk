@@ -2,6 +2,17 @@
 layout: base.njk
 title: Contact — Denison BAA
 description: Get in touch with the Black Alumni Association of Denison University.
+card1Title: "Send us a message"
+card1Body: "For general questions about the BAA, membership, events, or how to get involved, reach us at our general inbox. We'll respond as quickly as our volunteer team allows."
+card1Email: "info@denisonbaa.org"
+card1Note: "General inquiries · Membership · Events"
+card2Title: "Reach the President"
+card2Body: "For matters requiring direct executive attention — partnerships, institutional questions, media, or urgent organizational matters — contact the BAA President directly."
+card2Email: "president@denisonbaa.org"
+card2Note: "Partnerships · Institutional matters · Media"
+quickLinksHeadline: "Most people reach us through one of these."
+socialHeadline: "Stay connected between meetings."
+socialBody: "Follow us on social media for updates, announcements, and community news. The BAA is active on Instagram, Facebook, and LinkedIn."
 ---
 
 <!-- PAGE HERO -->
@@ -16,17 +27,17 @@ description: Get in touch with the Black Alumni Association of Denison Universit
   <div class="contact-grid">
     <div class="contact-card">
       <div class="card-label">General Inquiries</div>
-      <h2 class="card-title">Send us a message</h2>
-      <p class="card-body">For general questions about the BAA, membership, events, or how to get involved, reach us at our general inbox. We'll respond as quickly as our volunteer team allows.</p>
-      <a href="mailto:info@denisonbaa.org" class="email-link">info@denisonbaa.org</a>
-      <div class="email-note">General inquiries · Membership · Events</div>
+      <h2 class="card-title">{{ card1Title }}</h2>
+      <p class="card-body">{{ card1Body }}</p>
+      <a href="mailto:{{ card1Email }}" class="email-link">{{ card1Email }}</a>
+      <div class="email-note">{{ card1Note }}</div>
     </div>
     <div class="contact-card">
       <div class="card-label">Executive Office</div>
-      <h2 class="card-title">Reach the President</h2>
-      <p class="card-body">For matters requiring direct executive attention — partnerships, institutional questions, media, or urgent organizational matters — contact the BAA President directly.</p>
-      <a href="mailto:president@denisonbaa.org" class="email-link">president@denisonbaa.org</a>
-      <div class="email-note">Partnerships · Institutional matters · Media</div>
+      <h2 class="card-title">{{ card2Title }}</h2>
+      <p class="card-body">{{ card2Body }}</p>
+      <a href="mailto:{{ card2Email }}" class="email-link">{{ card2Email }}</a>
+      <div class="email-note">{{ card2Note }}</div>
     </div>
   </div>
 </div>
@@ -34,7 +45,7 @@ description: Get in touch with the Black Alumni Association of Denison Universit
 <!-- QUICK LINKS -->
 <div class="quick-links-section">
   <div class="section-label">Take Action</div>
-  <h2 class="section-title">Most people reach us through one of these.</h2>
+  <h2 class="section-title">{{ quickLinksHeadline }}</h2>
   <div class="quick-grid">
     <div class="quick-card">
       <div>
@@ -64,29 +75,20 @@ description: Get in touch with the Black Alumni Association of Denison Universit
 <div class="social-section">
   <div class="social-left">
     <div class="soc-label">Follow the BAA</div>
-    <h2 class="soc-title">Stay connected between meetings.</h2>
-    <p class="soc-body">Follow us on social media for updates, announcements, and community news. The BAA is active on Instagram, Facebook, and LinkedIn.</p>
+    <h2 class="soc-title">{{ socialHeadline }}</h2>
+    <p class="soc-body">{{ socialBody }}</p>
   </div>
   <div class="social-right">
     <a href="https://www.instagram.com/denisonuniversitybaa/" class="social-link" target="_blank" rel="noopener">
-      <div>
-        <div class="social-name">Instagram</div>
-        <div class="social-handle">@denisonuniversitybaa</div>
-      </div>
+      <div><div class="social-name">Instagram</div><div class="social-handle">@denisonuniversitybaa</div></div>
       <div class="social-arrow">→</div>
     </a>
     <a href="https://www.facebook.com/groups/denisonbaa" class="social-link" target="_blank" rel="noopener">
-      <div>
-        <div class="social-name">Facebook</div>
-        <div class="social-handle">Denison BAA Group</div>
-      </div>
+      <div><div class="social-name">Facebook</div><div class="social-handle">Denison BAA Group</div></div>
       <div class="social-arrow">→</div>
     </a>
     <a href="https://www.linkedin.com/company/denison-university-black-alumni-association/" class="social-link" target="_blank" rel="noopener">
-      <div>
-        <div class="social-name">LinkedIn</div>
-        <div class="social-handle">Denison University Black Alumni Association</div>
-      </div>
+      <div><div class="social-name">LinkedIn</div><div class="social-handle">Denison University Black Alumni Association</div></div>
       <div class="social-arrow">→</div>
     </a>
   </div>
