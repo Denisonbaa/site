@@ -144,21 +144,70 @@ collections:
   - name: "pages"
     label: "Site Pages"
     files:
+
       - label: "Home Page"
         name: "home"
         file: "index.njk"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "SEO Description", name: "description", widget: "text" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "Hero Subtitle", name: "heroSub", widget: "text" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "string", hint: "e.g. $370,000+" }
+              - { label: "Label", name: "label", widget: "string", hint: "e.g. In Scholarships Endowed" }
+          - { label: "Pillars Section Headline", name: "pillarsHeadline", widget: "string" }
+          - label: "Pillars"
+            name: "pillars"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "num", widget: "string", hint: "e.g. 01" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+          - { label: "Vision Quote", name: "visionQuote", widget: "string" }
+          - { label: "Vision Body", name: "visionBody", widget: "markdown" }
+          - { label: "Featured Essay Title", name: "perspFeaturedTitle", widget: "string" }
+          - { label: "Featured Essay Link", name: "perspFeaturedLink", widget: "string", hint: "e.g. /perspectives-01/" }
+          - { label: "CTA Headline", name: "ctaHeadline", widget: "string" }
+          - { label: "CTA Subtext", name: "ctaSub", widget: "text" }
+
       - label: "About Page"
         name: "about"
         file: "about.njk"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "SEO Description", name: "description", widget: "text" }
+          - { label: "History Headline", name: "historyHeadline", widget: "string" }
+          - { label: "History Body", name: "historyBody", widget: "markdown" }
+          - label: "Executive Board Members"
+            name: "boardMembers"
+            widget: "list"
+            fields:
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Name", name: "name", widget: "string", required: false, hint: "Leave blank if vacant" }
+              - { label: "Class Year", name: "class", widget: "string", required: false, hint: "e.g. Class of '88" }
+              - { label: "Email", name: "email", widget: "string" }
+          - { label: "Vision Quote", name: "visionQuote", widget: "string" }
+          - { label: "Objectives", name: "visionObjectives", widget: "text" }
+          - { label: "Closing CTA Text", name: "closingCta", widget: "text" }
+
       - label: "Contact Page"
         name: "contact"
         file: "contact.njk"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "SEO Description", name: "description", widget: "text" }
+          - { label: "Card 1 Title", name: "card1Title", widget: "string" }
+          - { label: "Card 1 Body", name: "card1Body", widget: "text" }
+          - { label: "Card 1 Email", name: "card1Email", widget: "string" }
+          - { label: "Card 1 Note", name: "card1Note", widget: "string" }
+          - { label: "Card 2 Title", name: "card2Title", widget: "string" }
+          - { label: "Card 2 Body", name: "card2Body", widget: "text" }
+          - { label: "Card 2 Email", name: "card2Email", widget: "string" }
+          - { label: "Card 2 Note", name: "card2Note", widget: "string" }
+          - { label: "Quick Links Headline", name: "quickLinksHeadline", widget: "string" }
+          - { label: "Social Section Headline", name: "socialHeadline", widget: "string" }
+          - { label: "Social Section Body", name: "socialBody", widget: "text" }
