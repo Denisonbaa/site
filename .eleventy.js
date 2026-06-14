@@ -1,7 +1,12 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const markdownIt = require("markdown-it");
+const md = new markdownIt({ html: true });
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
+
+  // Render a front matter markdown string to HTML
+  eleventyConfig.addFilter("markdownify", (content) => md.render(content || ""));
 
   // Human-readable date: "March 2026"
   eleventyConfig.addFilter("readableDate", function(dateObj) {
