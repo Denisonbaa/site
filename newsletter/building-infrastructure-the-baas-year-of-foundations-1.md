@@ -34,7 +34,7 @@ stories:
 events:
   - month: Nov
     day: "6"
-    title: Big Red Weekend
+    title: Big Red Weekend Events
     location: on campus locations
   - month: DEC
     day: "11"
