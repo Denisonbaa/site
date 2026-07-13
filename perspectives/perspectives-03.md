@@ -3,10 +3,11 @@ layout: essay.njk
 title: Events Don't Build Institutions — Denison BAA Perspectives
 description: Why Structure — Not Activity — Determines Whether Alumni Organizations Last
 permalink: /perspectives-03/
+date: 2025-03-15
 issue: "Perspectives · Vol. 03"
 essayTitle: "Events Don't Build Institutions"
 subtitle: "Why Structure — Not Activity — Determines Whether Alumni Organizations Last"
-volNum: "Vol. 03 of 03"
+volNum: "03"
 prevLink: /perspectives-02/
 prevLabel: "Turning Good Intentions Into Durable Impact"
 ---

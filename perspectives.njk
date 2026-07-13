@@ -13,33 +13,15 @@ permalink: /perspectives/
 
 <section class="essays-section">
   <div class="essays-list">
-
-    <a href="/perspectives-01/" class="essay-card">
-      <div class="essay-issue">Vol.<br>01</div>
+    {% for essay in collections.perspectives %}
+    <a href="{{ essay.url }}" class="essay-card">
+      <div class="essay-issue">Vol.<br>{{ essay.data.volNum }}</div>
       <div class="essay-body">
-        <div class="essay-title">Organize or Concede</div>
-        <div class="essay-subtitle">Why This Moment Demands Black Alumni Associations Build the Capacity to Act</div>
+        <div class="essay-title">{{ essay.data.essayTitle }}</div>
+        <div class="essay-subtitle">{{ essay.data.subtitle }}</div>
       </div>
       <div class="essay-arrow">→</div>
     </a>
-
-    <a href="/perspectives-02/" class="essay-card">
-      <div class="essay-issue">Vol.<br>02</div>
-      <div class="essay-body">
-        <div class="essay-title">Turning Good Intentions Into Durable Impact</div>
-        <div class="essay-subtitle">Building on our traditions to create the infrastructure of the future</div>
-      </div>
-      <div class="essay-arrow">→</div>
-    </a>
-
-    <a href="/perspectives-03/" class="essay-card">
-      <div class="essay-issue">Vol.<br>03</div>
-      <div class="essay-body">
-        <div class="essay-title">Events Don't Build Institutions</div>
-        <div class="essay-subtitle">Why Structure — Not Activity — Determines Whether Alumni Organizations Last</div>
-      </div>
-      <div class="essay-arrow">→</div>
-    </a>
-
+    {% endfor %}
   </div>
 </section>

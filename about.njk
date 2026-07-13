@@ -2,6 +2,43 @@
 layout: base.njk
 title: About — Denison BAA
 description: Our history, leadership, and structure. The BAA has connected Black alumni and students at Denison University since 1975.
+historyHeadline: "Fifty years of connecting Black alumni to Denison and to each other."
+historyBody: |
+  The Black Alumni Association of Denison University (BAA) was formed in 1975 to ensure that alumni remain connected to Denison and to one another long after graduation. Established under the authority of the BAA Bylaws, the Association operates as an independent alumni organization governed by an elected Executive Board.
+
+  Over time, the BAA has evolved from a reunion-centered alumni group into a structured, mission-driven organization focused on strengthening student success, expanding access to mentorship and career opportunities, growing the value of the alumni network, and contributing to the development of peer alumni associations.
+
+  The BAA supports a range of student and community-focused initiatives aligned with educational and charitable purposes, including mentorship, career readiness, economic opportunity and student support programming designed to improve academic persistence and post-graduate outcomes.
+
+  While rooted in the Denison experience, the BAA's programming is designed to deliver meaningful benefits to students and to the broader communities in which alumni live and work across the country and globally.
+boardMembers:
+  - role: "President"
+    name: "Aaron Laramore"
+    class: "Class of '88"
+    email: "president@denisonbaa.org"
+  - role: "Vice President"
+    name: "Martin Jones"
+    class: "Class of '86"
+    email: "vp@denisonbaa.org"
+  - role: "Secretary"
+    name: "Demitrus Evans"
+    class: "Class of '91"
+    email: "secretary@denisonbaa.org"
+  - role: "Treasurer"
+    name: ""
+    class: ""
+    email: "treasurer@denisonbaa.org"
+  - role: "Historian"
+    name: "Felice Harris"
+    class: "Class of '89"
+    email: "historian@denisonbaa.org"
+  - role: "Parliamentarian"
+    name: "James Thornton"
+    class: "Class of '88"
+    email: "parliamentarian@denisonbaa.org"
+visionQuote: "To build the #1 student and alumni support system of any private liberal arts college in the country."
+visionObjectives: "To promote communication, mentorship, and professional development that strengthen student success, expand access to opportunity, and build a more connected and impactful alumni community."
+closingCta: "If you support the mission and purpose of the BAA — we invite you to engage, contribute, and join us as we build the most durable alumni support system in the liberal arts landscape."
 ---
 
 <!-- PAGE HERO -->
@@ -16,11 +53,8 @@ description: Our history, leadership, and structure. The BAA has connected Black
   <div class="history-grid">
     <div class="history-body">
       <div class="section-label">Our History</div>
-      <h2 class="section-title">Fifty years of connecting Black alumni to Denison and to each other.</h2>
-      <p>The Black Alumni Association of Denison University (BAA) was formed in 1975 to ensure that alumni remain connected to Denison and to one another long after graduation. Established under the authority of the BAA Bylaws, the Association operates as an independent alumni organization governed by an elected Executive Board.</p>
-      <p>Over time, the BAA has evolved from a reunion-centered alumni group into a structured, mission-driven organization focused on strengthening student success, expanding access to mentorship and career opportunities, growing the value of the alumni network, and contributing to the development of peer alumni associations.</p>
-      <p>The BAA supports a range of student and community-focused initiatives aligned with educational and charitable purposes, including mentorship, career readiness, economic opportunity and student support programming designed to improve academic persistence and post-graduate outcomes.</p>
-      <p>While rooted in the Denison experience, the BAA's programming is designed to deliver meaningful benefits to students and to the broader communities in which alumni live and work across the country and globally.</p>
+      <h2 class="section-title">{{ historyHeadline }}</h2>
+      {{ historyBody | markdownify | safe }}
     </div>
     <div class="history-sidebar">
       <a href="https://www.canva.com/design/DAGrpmI_Pao/8lYE2y1vzVmaj5KYFXr5kA/view" class="timeline-link" target="_blank" rel="noopener">
@@ -39,41 +73,18 @@ description: Our history, leadership, and structure. The BAA has connected Black
   <div class="section-label">Leadership</div>
   <h2 class="section-title">2025–2027 Executive Board</h2>
   <div class="board-grid">
+    {% for member in boardMembers %}
     <div class="board-card">
-      <div class="board-role">President</div>
-      <div class="board-name"><a href="mailto:president@denisonbaa.org" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(44,44,44,0.2);">Aaron Laramore</a></div>
-      <div class="board-class">Class of '88</div>
-      <div class="board-email"><a href="mailto:president@denisonbaa.org" style="font-size:11px;color:var(--crimson);text-decoration:none;letter-spacing:0.02em;">president@denisonbaa.org</a></div>
-    </div>
-    <div class="board-card">
-      <div class="board-role">Vice President</div>
-      <div class="board-name"><a href="mailto:vp@denisonbaa.org" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(44,44,44,0.2);">Martin Jones</a></div>
-      <div class="board-class">Class of '86</div>
-      <div class="board-email"><a href="mailto:vp@denisonbaa.org" style="font-size:11px;color:var(--crimson);text-decoration:none;letter-spacing:0.02em;">vp@denisonbaa.org</a></div>
-    </div>
-    <div class="board-card">
-      <div class="board-role">Secretary</div>
-      <div class="board-name"><a href="mailto:secretary@denisonbaa.org" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(44,44,44,0.2);">Demitrus Evans</a></div>
-      <div class="board-class">Class of '91</div>
-      <div class="board-email"><a href="mailto:secretary@denisonbaa.org" style="font-size:11px;color:var(--crimson);text-decoration:none;letter-spacing:0.02em;">secretary@denisonbaa.org</a></div>
-    </div>
-    <div class="board-card">
-      <div class="board-role">Treasurer</div>
+      <div class="board-role">{{ member.role }}</div>
+      {% if member.name %}
+      <div class="board-name"><a href="mailto:{{ member.email }}" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(44,44,44,0.2);">{{ member.name }}</a></div>
+      <div class="board-class">{{ member.class }}</div>
+      {% else %}
       <div class="board-vacant">Vacant</div>
-      <div class="board-email"><a href="mailto:treasurer@denisonbaa.org" style="font-size:11px;color:var(--crimson);text-decoration:none;letter-spacing:0.02em;">treasurer@denisonbaa.org</a></div>
+      {% endif %}
+      <div class="board-email"><a href="mailto:{{ member.email }}" style="font-size:11px;color:var(--crimson);text-decoration:none;letter-spacing:0.02em;">{{ member.email }}</a></div>
     </div>
-    <div class="board-card">
-      <div class="board-role">Historian</div>
-      <div class="board-name"><a href="mailto:historian@denisonbaa.org" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(44,44,44,0.2);">Felice Harris</a></div>
-      <div class="board-class">Class of '89</div>
-      <div class="board-email"><a href="mailto:historian@denisonbaa.org" style="font-size:11px;color:var(--crimson);text-decoration:none;letter-spacing:0.02em;">historian@denisonbaa.org</a></div>
-    </div>
-    <div class="board-card">
-      <div class="board-role">Parliamentarian</div>
-      <div class="board-name"><a href="mailto:parliamentarian@denisonbaa.org" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(44,44,44,0.2);">James Thornton</a></div>
-      <div class="board-class">Class of '88</div>
-      <div class="board-email"><a href="mailto:parliamentarian@denisonbaa.org" style="font-size:11px;color:var(--crimson);text-decoration:none;letter-spacing:0.02em;">parliamentarian@denisonbaa.org</a></div>
-    </div>
+    {% endfor %}
   </div>
 </div>
 
@@ -82,13 +93,13 @@ description: Our history, leadership, and structure. The BAA has connected Black
   <div class="section-label-light">Vision &amp; Mission</div>
   <div class="vision-inner">
     <div>
-      <blockquote class="vision-quote-block">To build the #1 student and alumni support system of any private liberal arts college in the country.</blockquote>
+      <blockquote class="vision-quote-block">{{ visionQuote }}</blockquote>
     </div>
     <div class="vision-right">
       <p><strong style="color:var(--cream);">Our Vision</strong></p>
-      <p>To build the #1 student and alumni support system of any private liberal arts college in the country.</p>
+      <p>{{ visionQuote }}</p>
       <p><strong style="color:var(--cream);">Our Objectives</strong></p>
-      <p>To promote communication, mentorship, and professional development that strengthen student success, expand access to opportunity, and build a more connected and impactful alumni community.</p>
+      <p>{{ visionObjectives }}</p>
     </div>
   </div>
 </div>
@@ -101,52 +112,22 @@ description: Our history, leadership, and structure. The BAA has connected Black
     <div class="structure-left">
       <p>The BAA is governed by an elected Executive Board, as defined in Article V of the Bylaws. Officers serve two-year terms.</p>
       <ul class="officer-list">
-        <li class="officer-item">
-          <span class="officer-role">President</span>
-          <span class="officer-desc">Chief executive officer; liaison to university partners; presides over meetings</span>
-        </li>
-        <li class="officer-item">
-          <span class="officer-role">Vice President</span>
-          <span class="officer-desc">Oversees standing committees and student-facing programming</span>
-        </li>
-        <li class="officer-item">
-          <span class="officer-role">Secretary</span>
-          <span class="officer-desc">Maintains official records and BAA procedural history</span>
-        </li>
-        <li class="officer-item">
-          <span class="officer-role">Historian</span>
-          <span class="officer-desc">Manages archives, storytelling, and communications</span>
-        </li>
-        <li class="officer-item">
-          <span class="officer-role">Treasurer</span>
-          <span class="officer-desc">Oversees financial records, reporting, and fund stewardship</span>
-        </li>
-        <li class="officer-item">
-          <span class="officer-role">Parliamentarian</span>
-          <span class="officer-desc">Supports compliance with Robert's Rules and bylaw interpretation</span>
-        </li>
+        <li class="officer-item"><span class="officer-role">President</span><span class="officer-desc">Chief executive officer; liaison to university partners; presides over meetings</span></li>
+        <li class="officer-item"><span class="officer-role">Vice President</span><span class="officer-desc">Oversees standing committees and student-facing programming</span></li>
+        <li class="officer-item"><span class="officer-role">Secretary</span><span class="officer-desc">Maintains official records and BAA procedural history</span></li>
+        <li class="officer-item"><span class="officer-role">Historian</span><span class="officer-desc">Manages archives, storytelling, and communications</span></li>
+        <li class="officer-item"><span class="officer-role">Treasurer</span><span class="officer-desc">Oversees financial records, reporting, and fund stewardship</span></li>
+        <li class="officer-item"><span class="officer-role">Parliamentarian</span><span class="officer-desc">Supports compliance with Robert's Rules and bylaw interpretation</span></li>
       </ul>
     </div>
     <div>
       <div class="section-label">Standing Committees</div>
       <p style="font-size:14px;line-height:1.85;color:rgba(44,44,44,0.7);margin-bottom:28px;">To ensure clarity, accountability, and sustainability, the BAA operates through four standing committees.</p>
       <div class="committees-grid">
-        <div class="committee-card">
-          <h3>Governance &amp; Bylaws</h3>
-          <p>Protects structural integrity and legitimacy.</p>
-        </div>
-        <div class="committee-card">
-          <h3>Finance &amp; Fund Development</h3>
-          <p>Oversees budget and stewardship.</p>
-        </div>
-        <div class="committee-card">
-          <h3>Programs &amp; Mentorship</h3>
-          <p>Leads student-facing initiatives and mentorship programming.</p>
-        </div>
-        <div class="committee-card">
-          <h3>Communications &amp; Membership</h3>
-          <p>Manages newsletters, directory, website, and outreach.</p>
-        </div>
+        <div class="committee-card"><h3>Governance &amp; Bylaws</h3><p>Protects structural integrity and legitimacy.</p></div>
+        <div class="committee-card"><h3>Finance &amp; Fund Development</h3><p>Oversees budget and stewardship.</p></div>
+        <div class="committee-card"><h3>Programs &amp; Mentorship</h3><p>Leads student-facing initiatives and mentorship programming.</p></div>
+        <div class="committee-card"><h3>Communications &amp; Membership</h3><p>Manages newsletters, directory, website, and outreach.</p></div>
       </div>
     </div>
   </div>
@@ -154,6 +135,6 @@ description: Our history, leadership, and structure. The BAA has connected Black
 
 <!-- CLOSING CTA -->
 <div class="closing-section">
-  <h2>If you support the mission and purpose of the BAA — we invite you to engage, contribute, and join us as we build the most durable alumni support system in the liberal arts landscape.</h2>
+  <h2>{{ closingCta }}</h2>
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="closing-btn" target="_blank" rel="noopener">Join or Update Your Profile</a>
 </div>

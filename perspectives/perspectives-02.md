@@ -3,10 +3,11 @@ layout: essay.njk
 title: Turning Good Intentions Into Durable Impact — Denison BAA Perspectives
 description: Building on our traditions to create the infrastructure of the future
 permalink: /perspectives-02/
+date: 2025-02-15
 issue: "Perspectives · Vol. 02"
 essayTitle: "Turning Good Intentions Into Durable Impact"
 subtitle: "Building on our traditions to create the infrastructure of the future"
-volNum: "Vol. 02 of 03"
+volNum: "02"
 prevLink: /perspectives-01/
 prevLabel: "Organize or Concede"
 nextLink: /perspectives-03/

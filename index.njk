@@ -2,14 +2,43 @@
 layout: base.njk
 title: Denison Black Alumni Association
 description: The Black Alumni Association of Denison University — connecting alumni, students, and community since 1975.
+heroTitle: "Stay connected with the BAA community."
+heroSub: "Mentorship, student supports, career connections, professional development, and alumni philanthropy — connecting Black alumni and students at Denison University since 1975."
+stats:
+  - value: "$370,000+"
+    label: "In Scholarships Endowed"
+  - value: "1100+"
+    label: "Alumni"
+  - value: "Est. 1975"
+    label: "Serving Black Alumni"
+pillarsHeadline: "Student success. Member networking. Alumni philanthropy."
+pillars:
+  - num: "01"
+    title: "Student Success & Belonging"
+    desc: "Mentorship, student supports, career connections, community service"
+  - num: "02"
+    title: "Member Networking"
+    desc: "Professional development, networking & leadership development"
+  - num: "03"
+    title: "Alumni Philanthropy"
+    desc: "Fund What Matters — scholarship, community, academic leadership"
+visionQuote: "To build the #1 student and alumni support system among private liberal arts colleges in the country."
+visionBody: |
+  The Black Alumni Association of Denison University was formed in 1975 to ensure that alumni remain connected to Denison and to one another long after graduation. Over time, the BAA has evolved from a reunion-centered alumni group into a structured, mission-driven organization.
+
+  We focus on strengthening student success, expanding access to mentorship and career opportunities, growing the value of the alumni network, and contributing to the development of peer alumni associations.
+perspFeaturedTitle: "Organize or Concede: Why This Moment Demands Black Alumni Associations Build the Capacity to Act"
+perspFeaturedLink: "/perspectives-01/"
+ctaHeadline: "Connect. Get Involved. Be Informed. Make an Impact."
+ctaSub: "Join or update your profile, serve on a committee, access member resources, or read Perspectives."
 ---
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <div class="eyebrow">Denison University · Black Alumni Association</div>
-    <h1 class="hero-title">Stay connected<br>with the <em>BAA community.</em></h1>
-    <p class="hero-sub">Mentorship, student supports, career connections, professional development, and alumni philanthropy — connecting Black alumni and students at Denison University since 1975.</p>
+    <h1 class="hero-title">{{ heroTitle }}</h1>
+    <p class="hero-sub">{{ heroSub }}</p>
     <div class="hero-ctas">
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="btn-primary" target="_blank" rel="noopener">Join or Update Your Profile</a>
       <a href="/about/" class="btn-outline">Explore the BAA</a>
@@ -17,18 +46,12 @@ description: The Black Alumni Association of Denison University — connecting a
   </div>
   <div class="hero-right">
     <div class="stats-stack">
+      {% for stat in stats %}
       <div class="stat-item">
-        <span class="n">$370,000+</span>
-        <span class="l">In Scholarships Endowed</span>
+        <span class="n">{{ stat.value }}</span>
+        <span class="l">{{ stat.label }}</span>
       </div>
-      <div class="stat-item">
-        <span class="n">1100+</span>
-        <span class="l">Alumni</span>
-      </div>
-      <div class="stat-item">
-        <span class="n">Est. 1975</span>
-        <span class="l">Serving Black Alumni</span>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -37,24 +60,16 @@ description: The Black Alumni Association of Denison University — connecting a
 <section class="pillars-section">
   <div class="section-header">
     <div class="section-label">What We Do</div>
-    <h2 class="section-title">Student success. Member networking. Alumni philanthropy.</h2>
+    <h2 class="section-title">{{ pillarsHeadline }}</h2>
   </div>
   <div class="pillars">
+    {% for pillar in pillars %}
     <div class="pillar">
-      <div class="pillar-num">01</div>
-      <h3>Student Success &amp; Belonging</h3>
-      <p>Mentorship, student supports, career connections, community service</p>
+      <div class="pillar-num">{{ pillar.num }}</div>
+      <h3>{{ pillar.title }}</h3>
+      <p>{{ pillar.desc }}</p>
     </div>
-    <div class="pillar">
-      <div class="pillar-num">02</div>
-      <h3>Member Networking</h3>
-      <p>Professional development, networking &amp; leadership development</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-num">03</div>
-      <h3>Alumni Philanthropy</h3>
-      <p>Fund What Matters — scholarship, community, academic leadership</p>
-    </div>
+    {% endfor %}
   </div>
 </section>
 
@@ -62,11 +77,10 @@ description: The Black Alumni Association of Denison University — connecting a
 <section class="vision-section">
   <div class="vision-left">
     <div class="vision-eyebrow">Our Vision</div>
-    <blockquote class="vision-quote">To build the #1 student and alumni support system among private liberal arts colleges in the country.</blockquote>
+    <blockquote class="vision-quote">{{ visionQuote }}</blockquote>
   </div>
   <div class="vision-body">
-    <p>The Black Alumni Association of Denison University was formed in 1975 to ensure that alumni remain connected to Denison and to one another long after graduation. Over time, the BAA has evolved from a reunion-centered alumni group into a structured, mission-driven organization.</p>
-    <p>We focus on strengthening student success, expanding access to mentorship and career opportunities, growing the value of the alumni network, and contributing to the development of peer alumni associations.</p>
+    {{ visionBody | markdownify | safe }}
     <a href="/about/" class="vision-link">About the BAA →</a>
   </div>
 </section>
@@ -78,8 +92,8 @@ description: The Black Alumni Association of Denison University — connecting a
   <div class="persp-grid">
     <div class="featured-card">
       <div class="feat-tag">Featured Perspective</div>
-      <div class="feat-title">Organize or Concede: Why This Moment Demands Black Alumni Associations Build the Capacity to Act</div>
-      <a href="/perspectives-01/" class="feat-link">Read the full essay →</a>
+      <div class="feat-title">{{ perspFeaturedTitle }}</div>
+      <a href="{{ perspFeaturedLink }}" class="feat-link">Read the full essay →</a>
     </div>
     <div class="side-cards">
       <div class="side-card">
@@ -97,8 +111,8 @@ description: The Black Alumni Association of Denison University — connecting a
 <!-- CTA BAND -->
 <section class="cta-section">
   <div class="cta-left">
-    <h2>Connect. Get Involved.<br>Be Informed. Make an Impact.</h2>
-    <p>Join or update your profile, serve on a committee, access member resources, or read Perspectives.</p>
+    <h2>{{ ctaHeadline }}</h2>
+    <p>{{ ctaSub }}</p>
   </div>
   <div class="cta-buttons" style="flex-direction:column;gap:10px;align-items:stretch;">
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="btn-white" target="_blank" rel="noopener">Join or Update Your Profile</a>

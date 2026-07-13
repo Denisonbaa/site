@@ -1,7 +1,12 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const markdownIt = require("markdown-it");
+const md = new markdownIt({ html: true });
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
+
+  // Render a front matter markdown string to HTML
+  eleventyConfig.addFilter("markdownify", (content) => md.render(content || ""));
 
   // Human-readable date: "March 2026"
   eleventyConfig.addFilter("readableDate", function(dateObj) {
@@ -33,6 +38,13 @@ module.exports = function(eleventyConfig) {
     return collectionApi
       .getFilteredByGlob("newsletter/*.md")
       .sort((a, b) => b.date - a.date);
+  });
+
+  // Perspectives collection — sorted oldest first (Vol. 01 first)
+  eleventyConfig.addCollection("perspectives", function(collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("perspectives/*.md")
+      .sort((a, b) => a.date - b.date);
   });
 
   return {

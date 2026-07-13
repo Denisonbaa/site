@@ -3,10 +3,11 @@ layout: essay.njk
 title: Organize or Concede — Denison BAA Perspectives
 description: Why This Moment Demands Black Alumni Associations Build the Capacity to Act
 permalink: /perspectives-01/
+date: 2025-01-15
 issue: "Perspectives · Vol. 01"
 essayTitle: "Organize or Concede"
 subtitle: "Why This Moment Demands Black Alumni Associations Build the Capacity to Act"
-volNum: "Vol. 01 of 03"
+volNum: "01"
 nextLink: /perspectives-02/
 nextLabel: "Turning Good Intentions Into Durable Impact"
 ---
