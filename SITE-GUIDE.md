@@ -6,19 +6,34 @@ This guide is for anyone on the BAA team who needs to publish or update content 
 
 ## Where to Go
 
-**Your CMS (content editor):** `https://[your-site].netlify.app/admin`
+**When working locally (development):** `http://localhost:8080/admin`  
+Start the local server first with `npm start` in the project folder (see below).
 
-You'll need an invite from the site admin to log in the first time. After that, use your email and password.
+**When editing on the live site:** `https://[your-site].netlify.app/admin`  
+You'll need an invite from the site admin to log in the first time.
 
 ---
 
-## Publishing a Newsletter Issue (8 Steps)
+## Starting the Local Dev Server
+
+Open a terminal in the project folder and run:
+
+```
+npm install
+npm start
+```
+
+Two things will start: the Eleventy site (on port 8080) and the CMS proxy server (on port 8081). Both must be running for the CMS to save content locally. Press **Ctrl+C** to stop both.
+
+---
+
+## Publishing a Newsletter Issue (6 Steps)
 
 ### 1. Go to the CMS
-Open your browser and go to `/admin` on your site URL. Log in with your email and password.
+Open your browser and go to `https://denisonbaa.org/admin`. Log in with your email and password.
 
 ### 2. Click "Newsletter Issues" in the left menu
-You'll see a list of all published and draft issues.
+You'll see a list of all published issues and any saved drafts.
 
 ### 3. Click "New Newsletter Issue"
 A form opens. Fill in the fields:
@@ -37,20 +52,16 @@ A form opens. Fill in the fields:
 
 The other fields (stats, stories, events) are optional. Fill them in if you have the content.
 
-### 4. Save as Draft
-Click **Save** in the top-right corner. Your work is saved but not live yet.
+### 4. Save your draft
+Click **Save** in the top-right corner. Your draft is saved. It will appear in the Newsletter Issues list under the **Workflow** tab (not the main list yet — that's normal).
 
-### 5. Preview your draft
-Click the **Check for Preview** button (top right) — Netlify will build a preview link within about 60 seconds. Click it to see exactly how the issue will look.
+### 5. Preview the draft
+Click **Check for Preview** in the editor toolbar. Netlify will build a preview of your draft — this takes about 1–2 minutes. When it's ready, the button changes to **View Preview**. Click it to open the fully rendered newsletter page in a new tab. This is exactly how it will look when published.
 
-### 6. Get a second set of eyes (optional)
-In the Status dropdown (top left), set it to **In Review**. This notifies any other editors that the draft is ready to be checked.
+Make any adjustments in the editor, click Save again, and refresh the preview tab after ~1–2 minutes to see the updates.
 
-### 7. Mark it Ready
-When you're satisfied, set Status to **Ready**. This tells the system it's approved.
-
-### 8. Publish
-Click **Publish Now**. The issue goes live on the site within about 2 minutes. Mailchimp will automatically detect the new RSS entry and send the email to subscribers within 24 hours (depending on your Mailchimp RSS campaign settings).
+### 6. Publish
+When you're satisfied with the preview, click **Publish Now**. The issue goes live on the site within about 2 minutes. Mailchimp will automatically detect the new RSS entry and send the email to subscribers within 24 hours (depending on your Mailchimp RSS campaign settings).
 
 ---
 
@@ -60,7 +71,7 @@ Click **Publish Now**. The issue goes live on the site within about 2 minutes. M
 2. Click **Newsletter Issues**
 3. Click the issue you want to edit
 4. Make your changes
-5. Click **Save** → then **Publish Now** to push the update live
+5. Click **Save** — changes are live on the next site deploy
 
 ---
 
@@ -97,13 +108,13 @@ Basic metadata (page title and description) for the main pages can be edited thr
 
 ## Troubleshooting
 
-**"I can't log in"** — Ask your site admin to resend your Netlify Identity invite, or reset your password from the login screen.
+**"I can't log in" (live site)** — Ask your site admin to resend your Netlify Identity invite, or reset your password from the login screen.
 
-**"My changes aren't showing up"** — The site takes 1–2 minutes to rebuild after you publish. Hard-refresh your browser (Ctrl+Shift+R on Windows, Cmd+Shift+R on Mac).
+**"The CMS saves but nothing shows up" (local)** — Make sure you ran `npm start`, not just `eleventy --serve`. Both the proxy server (port 8081) and eleventy (port 8080) must be running together.
 
-**"The preview link says 'Site not found'"** — Wait 60 seconds and try again. Netlify is building your preview.
+**"My changes aren't showing up on the live site"** — The site takes 1–2 minutes to rebuild after you deploy. Hard-refresh your browser (Ctrl+Shift+R on Windows, Cmd+Shift+R on Mac).
 
-**"I accidentally published something I didn't mean to"** — Contact your site admin immediately. They can roll back to the previous version in about 5 minutes via the Netlify dashboard.
+**"I accidentally saved/published something I didn't mean to"** — Contact your site admin immediately. They can roll back to the previous version via the git history.
 
 ---
 

@@ -149,7 +149,8 @@
     </div>
     <div class="events-grid">
       {% for event in events %}
-      <div class="event-item">
+      <div class="event-item{% if event.image %} event-item--has-image{% endif %}">
+        {% if event.image %}<img class="event-img" src="{{ event.image }}" alt="{{ event.title }}">{% endif %}
         <div class="event-date">
           <span class="month">{{ event.month }}</span>
           <span class="day">{{ event.day }}</span>
