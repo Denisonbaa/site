@@ -96,13 +96,16 @@ Basic metadata (page title and description) for the main pages can be edited thr
 ## Uploading Images
 
 - Go to any newsletter issue in the CMS
-- In the Hero Image field (or any image field), click **Choose an image**
+- In any image field (Hero Image, story card Image, event Image), click **Choose an image**
 - You can upload directly from your computer — JPG or PNG, under 5MB
 - Uploaded images are stored in `/public/images/` and served at `/images/`
+
+**Body content images:** When you insert an image using the toolbar inside the Body text editor, it will show a **placeholder/broken icon in the CMS editor** — this is normal. The image is saved in your draft but won't load in the editor preview because it's not on the live site yet. It WILL appear correctly on the **Netlify deploy preview** (after clicking "Check for Preview" and waiting ~2 minutes).
 
 **Recommended sizes:**
 - Hero image: 1400 × 600px
 - Story card images: 800 × 500px
+- Body images: 1000px wide max
 
 ---
 
