@@ -188,13 +188,10 @@ collections:
           - { label: "Countdown Label", name: "countdownLabel", widget: "string", required: false, hint: "e.g. BAA General Meeting" }
           - label: "Countdown Date & Time (Eastern Time)"
             name: "countdownDate"
-            widget: "datetime"
+            widget: "string"
             required: false
-            picker_utc: false
-            date_format: "YYYY-MM-DD"
-            time_format: "HH:mm"
-            format: "YYYY-MM-DDTHH:mm:ss"
-            hint: "Always entered as Eastern Time — automatically handles EST/EDT."
+            pattern: ['^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$', "Use the format YYYY-MM-DDTHH:MM, e.g. 2026-08-09T19:00"]
+            hint: "Format: YYYY-MM-DDTHH:MM (24-hour clock). e.g. 2026-08-09T19:00 = Aug 9, 7:00 PM. Always Eastern Time — EST/EDT handled automatically."
           - { label: "CTA Button Text (optional)", name: "countdownCtaText", widget: "string", required: false }
           - { label: "CTA Button Link (optional)", name: "countdownCtaLink", widget: "string", required: false }
 
