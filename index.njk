@@ -91,11 +91,25 @@ countdownCtaLink: https://us06web.zoom.us/meeting/register/A8z4uA_dRGihHK7ejg8XO
   var targetLocal = band.getAttribute('data-target');
 
   function easternToUTC(naiveStr) {
-    var probe = new Date(naiveStr + 'Z');
-    var nyString = probe.toLocaleString('en-US', { timeZone: 'America/New_York' });
-    var nyAsUTC = new Date(nyString + ' UTC');
-    var offsetMs = probe.getTime() - nyAsUTC.getTime();
-    return new Date(probe.getTime() + offsetMs);
+    var m = naiveStr.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?$/);
+    if (!m) return new Date(naiveStr);
+    var y = +m[1], mo = +m[2], d = +m[3], h = +m[4], mi = +m[5], s = +(m[6] || 0);
+
+    var guess = new Date(Date.UTC(y, mo - 1, d, h, mi, s));
+
+    var dtf = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      hourCycle: 'h23',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    var parts = {};
+    dtf.formatToParts(guess).forEach(function (p) { parts[p.type] = p.value; });
+
+    var nyHour = (+parts.hour) % 24;
+    var nyAsUTC = Date.UTC(+parts.year, (+parts.month) - 1, +parts.day, nyHour, +parts.minute, +parts.second);
+    var offsetMs = guess.getTime() - nyAsUTC;
+    return new Date(guess.getTime() + offsetMs);
   }
 
   var target = easternToUTC(targetLocal);
