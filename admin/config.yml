@@ -152,30 +152,32 @@ collections:
         name: "home"
         file: "index.njk"
         fields:
-          - { label: "SEO Title", name: "title", widget: "string" }
-          - { label: "SEO Description", name: "description", widget: "text" }
-          - { label: "Hero Title", name: "heroTitle", widget: "string" }
-          - { label: "Hero Subtitle", name: "heroSub", widget: "text" }
+          - { label: "SEO Title", name: "title", widget: "string", required: false }
+          - { label: "SEO Description", name: "description", widget: "text", required: false }
+          - { label: "Hero Title", name: "heroTitle", widget: "string", required: false }
+          - { label: "Hero Subtitle", name: "heroSub", widget: "text", required: false }
           - label: "Stats"
             name: "stats"
             widget: "list"
+            required: false
             fields:
-              - { label: "Value", name: "value", widget: "string", hint: "e.g. $370,000+" }
-              - { label: "Label", name: "label", widget: "string", hint: "e.g. In Scholarships Endowed" }
-          - { label: "Pillars Section Headline", name: "pillarsHeadline", widget: "string" }
+              - { label: "Value", name: "value", widget: "string", required: false, hint: "e.g. $370,000+" }
+              - { label: "Label", name: "label", widget: "string", required: false, hint: "e.g. In Scholarships Endowed" }
+          - { label: "Pillars Section Headline", name: "pillarsHeadline", widget: "string", required: false }
           - label: "Pillars"
             name: "pillars"
             widget: "list"
+            required: false
             fields:
-              - { label: "Number", name: "num", widget: "string", hint: "e.g. 01" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "desc", widget: "text" }
-          - { label: "Vision Quote", name: "visionQuote", widget: "string" }
-          - { label: "Vision Body", name: "visionBody", widget: "markdown" }
-          - { label: "Featured Essay Title", name: "perspFeaturedTitle", widget: "string" }
-          - { label: "Featured Essay Link", name: "perspFeaturedLink", widget: "string", hint: "e.g. /perspectives-01/" }
-          - { label: "CTA Headline", name: "ctaHeadline", widget: "string" }
-          - { label: "CTA Subtext", name: "ctaSub", widget: "text" }
+              - { label: "Number", name: "num", widget: "string", required: false, hint: "e.g. 01" }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "desc", widget: "text", required: false }
+          - { label: "Vision Quote", name: "visionQuote", widget: "string", required: false }
+          - { label: "Vision Body", name: "visionBody", widget: "markdown", required: false }
+          - { label: "Featured Essay Title", name: "perspFeaturedTitle", widget: "string", required: false }
+          - { label: "Featured Essay Link", name: "perspFeaturedLink", widget: "string", required: false, hint: "e.g. /perspectives-01/" }
+          - { label: "CTA Headline", name: "ctaHeadline", widget: "string", required: false }
+          - { label: "CTA Subtext", name: "ctaSub", widget: "text", required: false }
           - { label: "Show Countdown?", name: "countdownEnabled", widget: "boolean", default: false }
           - { label: "Countdown Label", name: "countdownLabel", widget: "string", required: false, hint: "e.g. BAA General Meeting" }
           - label: "Countdown Date & Time (Eastern Time)"
