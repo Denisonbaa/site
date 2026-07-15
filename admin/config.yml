@@ -24,20 +24,24 @@ collections:
       - label: "Issue Title"
         name: "title"
         widget: "string"
+        required: false
         hint: "e.g. Building Infrastructure: The BAA's Year of Foundations"
       - label: "Issue Label"
         name: "issueLabel"
         widget: "string"
+        required: false
         hint: "e.g. Vol. 1, No. 2 — Summer 2026"
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
+        required: false
         format: "YYYY-MM-DD"
         date_format: "YYYY-MM-DD"
         time_format: false
       - label: "Short Description (for RSS & listing)"
         name: "description"
         widget: "text"
+        required: false
         hint: "1–2 sentences. Appears in the newsletter listing and email subject."
       - label: "Hero Image"
         name: "heroImage"
@@ -87,16 +91,16 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Value", name: "value", widget: "string" }
-          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Value", name: "value", widget: "string", required: false }
+          - { label: "Label", name: "label", widget: "string", required: false }
       - label: "Story Cards (two-column section)"
         name: "stories"
         widget: "list"
         required: false
         fields:
-          - { label: "Tag", name: "tag", widget: "string" }
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "text" }
+          - { label: "Tag", name: "tag", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "text", required: false }
           - { label: "Image", name: "image", widget: "image", required: false }
           - { label: "Link URL", name: "link", widget: "string", required: false }
           - { label: "Link Text", name: "linkText", widget: "string", required: false }
@@ -105,14 +109,15 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Month (3-letter)", name: "month", widget: "string", hint: "e.g. APR" }
-          - { label: "Day", name: "day", widget: "string" }
-          - { label: "Event Title", name: "title", widget: "string" }
+          - { label: "Month (3-letter)", name: "month", widget: "string", required: false, hint: "e.g. APR" }
+          - { label: "Day", name: "day", widget: "string", required: false }
+          - { label: "Event Title", name: "title", widget: "string", required: false }
           - { label: "Location / Details", name: "location", widget: "string", required: false }
           - { label: "Image", name: "image", widget: "image", required: false }
       - label: "Body (main article content)"
         name: "body"
         widget: "markdown"
+        required: false
         hint: "This is the main feature story. Use ## headings to create sections."
 
   # ── PERSPECTIVES (ESSAYS) ─────────────────────────────────────
@@ -125,23 +130,24 @@ collections:
     extension: "md"
     format: "frontmatter"
     fields:
-      - { label: "SEO Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "SEO Title", name: "title", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
+        required: false
         format: "YYYY-MM-DD"
         date_format: "YYYY-MM-DD"
         time_format: false
-      - { label: "Issue Label", name: "issue", widget: "string", hint: "e.g. Perspectives · Vol. 04" }
-      - { label: "Essay Title", name: "essayTitle", widget: "string" }
-      - { label: "Subtitle", name: "subtitle", widget: "string" }
-      - { label: "Volume Number", name: "volNum", widget: "string", hint: "e.g. 04" }
+      - { label: "Issue Label", name: "issue", widget: "string", required: false, hint: "e.g. Perspectives · Vol. 04" }
+      - { label: "Essay Title", name: "essayTitle", widget: "string", required: false }
+      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+      - { label: "Volume Number", name: "volNum", widget: "string", required: false, hint: "e.g. 04" }
       - { label: "Previous Essay Link", name: "prevLink", widget: "string", required: false }
       - { label: "Previous Essay Label", name: "prevLabel", widget: "string", required: false }
       - { label: "Next Essay Link", name: "nextLink", widget: "string", required: false }
       - { label: "Next Essay Label", name: "nextLabel", widget: "string", required: false }
-      - { label: "Essay Body", name: "body", widget: "markdown" }
+      - { label: "Essay Body", name: "body", widget: "markdown", required: false }
 
   # ── SITE PAGES ────────────────────────────────────────────────
   - name: "pages"
@@ -196,36 +202,37 @@ collections:
         name: "about"
         file: "about.njk"
         fields:
-          - { label: "SEO Title", name: "title", widget: "string" }
-          - { label: "SEO Description", name: "description", widget: "text" }
-          - { label: "History Headline", name: "historyHeadline", widget: "string" }
-          - { label: "History Body", name: "historyBody", widget: "markdown" }
+          - { label: "SEO Title", name: "title", widget: "string", required: false }
+          - { label: "SEO Description", name: "description", widget: "text", required: false }
+          - { label: "History Headline", name: "historyHeadline", widget: "string", required: false }
+          - { label: "History Body", name: "historyBody", widget: "markdown", required: false }
           - label: "Executive Board Members"
             name: "boardMembers"
             widget: "list"
+            required: false
             fields:
-              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Role", name: "role", widget: "string", required: false }
               - { label: "Name", name: "name", widget: "string", required: false, hint: "Leave blank if vacant" }
               - { label: "Class Year", name: "class", widget: "string", required: false, hint: "e.g. Class of '88" }
-              - { label: "Email", name: "email", widget: "string" }
-          - { label: "Vision Quote", name: "visionQuote", widget: "string" }
-          - { label: "Objectives", name: "visionObjectives", widget: "text" }
-          - { label: "Closing CTA Text", name: "closingCta", widget: "text" }
+              - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "Vision Quote", name: "visionQuote", widget: "string", required: false }
+          - { label: "Objectives", name: "visionObjectives", widget: "text", required: false }
+          - { label: "Closing CTA Text", name: "closingCta", widget: "text", required: false }
 
       - label: "Contact Page"
         name: "contact"
         file: "contact.njk"
         fields:
-          - { label: "SEO Title", name: "title", widget: "string" }
-          - { label: "SEO Description", name: "description", widget: "text" }
-          - { label: "Card 1 Title", name: "card1Title", widget: "string" }
-          - { label: "Card 1 Body", name: "card1Body", widget: "text" }
-          - { label: "Card 1 Email", name: "card1Email", widget: "string" }
-          - { label: "Card 1 Note", name: "card1Note", widget: "string" }
-          - { label: "Card 2 Title", name: "card2Title", widget: "string" }
-          - { label: "Card 2 Body", name: "card2Body", widget: "text" }
-          - { label: "Card 2 Email", name: "card2Email", widget: "string" }
-          - { label: "Card 2 Note", name: "card2Note", widget: "string" }
-          - { label: "Quick Links Headline", name: "quickLinksHeadline", widget: "string" }
-          - { label: "Social Section Headline", name: "socialHeadline", widget: "string" }
-          - { label: "Social Section Body", name: "socialBody", widget: "text" }
+          - { label: "SEO Title", name: "title", widget: "string", required: false }
+          - { label: "SEO Description", name: "description", widget: "text", required: false }
+          - { label: "Card 1 Title", name: "card1Title", widget: "string", required: false }
+          - { label: "Card 1 Body", name: "card1Body", widget: "text", required: false }
+          - { label: "Card 1 Email", name: "card1Email", widget: "string", required: false }
+          - { label: "Card 1 Note", name: "card1Note", widget: "string", required: false }
+          - { label: "Card 2 Title", name: "card2Title", widget: "string", required: false }
+          - { label: "Card 2 Body", name: "card2Body", widget: "text", required: false }
+          - { label: "Card 2 Email", name: "card2Email", widget: "string", required: false }
+          - { label: "Card 2 Note", name: "card2Note", widget: "string", required: false }
+          - { label: "Quick Links Headline", name: "quickLinksHeadline", widget: "string", required: false }
+          - { label: "Social Section Headline", name: "socialHeadline", widget: "string", required: false }
+          - { label: "Social Section Body", name: "socialBody", widget: "text", required: false }
