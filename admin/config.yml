@@ -152,6 +152,7 @@ collections:
   # ── SITE PAGES ────────────────────────────────────────────────
   - name: "pages"
     label: "Site Pages"
+    format: "frontmatter"
     files:
 
       - label: "Home Page"
