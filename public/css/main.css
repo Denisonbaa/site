@@ -78,6 +78,22 @@ nav ul li a:hover, nav ul li a.active { color: var(--gold); }
   letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-top: 6px; display: block;
 }
 
+.countdown-band {
+  background: var(--crimson); display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap; padding: 32px 40px; text-align: center;
+}
+.countdown-label {
+  font-family: 'Open Sans', sans-serif; font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; font-weight: 700; color: white;
+}
+.countdown-timer { display: flex; gap: 32px; }
+.c-unit { font-family: 'EB Garamond', serif; color: white; }
+.c-unit .c-n { font-size: 44px; display: block; line-height: 1; font-weight: 400; }
+.c-unit .c-l {
+  font-family: 'Open Sans', sans-serif; font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-top: 4px; display: block;
+}
+
 /* ── PILLARS ─────────────────────────────────────────────────── */
 .pillars-section { padding: 80px 60px; background: var(--cream); }
 .section-header { margin-bottom: 52px; }
@@ -671,6 +687,9 @@ footer .social a:hover { color: var(--gold); }
   .stat-item { flex: 1; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.18); padding: 16px 8px; }
   .stat-item:last-child { border-right: none; }
   .stat-item .n { font-size: 28px; }
+  .countdown-band { gap: 24px; padding: 24px 20px; }
+  .countdown-timer { gap: 20px; }
+  .c-unit .c-n { font-size: 34px; }
 
   .pillars-section { padding: 52px 24px; }
   .pillars { grid-template-columns: 1fr; gap: 2px; }

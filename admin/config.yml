@@ -176,6 +176,19 @@ collections:
           - { label: "Featured Essay Link", name: "perspFeaturedLink", widget: "string", hint: "e.g. /perspectives-01/" }
           - { label: "CTA Headline", name: "ctaHeadline", widget: "string" }
           - { label: "CTA Subtext", name: "ctaSub", widget: "text" }
+          - { label: "Show Countdown?", name: "countdownEnabled", widget: "boolean", default: false }
+          - { label: "Countdown Label", name: "countdownLabel", widget: "string", required: false, hint: "e.g. BAA General Meeting" }
+          - label: "Countdown Date & Time (Eastern Time)"
+            name: "countdownDate"
+            widget: "datetime"
+            required: false
+            picker_utc: false
+            date_format: "YYYY-MM-DD"
+            time_format: "HH:mm"
+            format: "YYYY-MM-DDTHH:mm:ss"
+            hint: "Always entered as Eastern Time — automatically handles EST/EDT."
+          - { label: "CTA Button Text (optional)", name: "countdownCtaText", widget: "string", required: false }
+          - { label: "CTA Button Link (optional)", name: "countdownCtaLink", widget: "string", required: false }
 
       - label: "About Page"
         name: "about"
