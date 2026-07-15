@@ -28,6 +28,21 @@ module.exports = function(eleventyConfig) {
     return new Date(dateObj).toUTCString();
   });
 
+  // Normalize a naive "YYYY-MM-DDTHH:mm:ss" countdown date to that exact string.
+  // YAML front matter (and the CMS's own re-save of it) may parse an unquoted
+  // value like this into a real Date object instead of keeping it a string —
+  // when that happens, read it back via UTC getters so the original literal
+  // digits are preserved regardless of the build server's local timezone.
+  eleventyConfig.addFilter("isoNaive", function(value) {
+    if (!value) return value;
+    if (value instanceof Date) {
+      const pad = (n) => String(n).padStart(2, "0");
+      return value.getUTCFullYear() + "-" + pad(value.getUTCMonth() + 1) + "-" + pad(value.getUTCDate()) +
+        "T" + pad(value.getUTCHours()) + ":" + pad(value.getUTCMinutes()) + ":" + pad(value.getUTCSeconds());
+    }
+    return String(value);
+  });
+
   // Pass through static assets unchanged
   eleventyConfig.addPassthroughCopy("public");
   eleventyConfig.addPassthroughCopy({ "public": "." });

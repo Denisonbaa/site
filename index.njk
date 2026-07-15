@@ -73,7 +73,7 @@ countdownCtaLink: https://us06web.zoom.us/meeting/register/A8z4uA_dRGihHK7ejg8XO
 
 <!-- COUNTDOWN -->
 {% if countdownEnabled and countdownDate %}
-<section class="countdown-band" id="countdown-band" data-target="{{ countdownDate }}">
+<section class="countdown-band" id="countdown-band" data-target="{{ countdownDate | isoNaive }}">
   <div class="countdown-label">{{ countdownLabel }}</div>
   <div class="countdown-timer">
     <div class="c-unit"><span class="c-n" id="cd-days">--</span><span class="c-l">Days</span></div>
