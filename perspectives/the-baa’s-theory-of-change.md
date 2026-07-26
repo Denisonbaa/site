@@ -10,15 +10,21 @@ The Black Alumni Association exists because Black students and Black alumni need
 
 For a long time, much of what Black alumni have done for students has depended on care, memory, volunteer energy, and a willingness to step in when something important needed to happen. That care matters. It has always mattered. But care by itself does not create permanence. It does not guarantee that support will still be there when leadership changes, when campus priorities shift, or when outside political pressure makes institutions more cautious, more risk-averse, and less willing to sustain Black-serving purpose in clear and intentional ways.
 
+
+
 **That is the problem the BAA is trying to solve.**
 
 We believe students should be able to count on more than isolated acts of support. They should be able to count on a real system of belonging, opportunity, advocacy, and tangible help. We believe Black alumni should be connected beyond reunion moments and scattered communication. They should be connected through a living network that creates value, deepens relationships, and gives people a meaningful way to stay engaged in the life of the community. And we believe that because Black alumni are serious about protecting Black-serving purpose over time, we cannot rely *only* on institutional goodwill. We have to build durable infrastructure of our own.
+
+
 
 **That is the heart of our theory of change.**
 
 *Our theory is simple: when Black alumni are organized into a clear, credible, community-owned system of participation, we can turn shared commitment into lasting capacit*y. What begins as care becomes coordination. What begins as individual generosity becomes pooled strength. What begins as scattered effort becomes a durable support system for students and a stronger network for alumni.
 
 This matters because our challenge is not that Black alumni do not care. Our challenge is that caring has remained informal, episodic, and difficult to scale. Many alumni are willing to help. Many have already helped. Many are ready to give, mentor, open doors, share advice, contribute resources, or show up for students. But willingness alone does not create durable results. Without structure, generosity becomes irregular. Without visibility, impact becomes hard to see. Without systems, momentum depends too much on whichever few people happen to be carrying the load at a given moment.
+
+
 
 **The BAA’s work is to change that.**
 
@@ -27,6 +33,8 @@ We are building a model in which participation becomes powerful. When alumni can
 In other words, our theory of change is not based on doing everything. It is based on building the right things well enough, consistently enough, and visibly enough that they begin to reinforce one another.
 
 When students experience strong support, alumni can see the value of what the BAA makes possible. When alumni can see that their contributions are producing real outcomes, trust grows. When trust grows, participation becomes more regular. When participation becomes more regular, the BAA has greater capacity to fund programs, support students, strengthen the alumni network, and steward resources responsibly. When the BAA demonstrates that it can do these things with discipline and transparency, it gains credibility. And credibility creates leverage: leverage with alumni, leverage with partners, leverage in protecting the community’s interests, and leverage in shaping the future rather than merely reacting to it.
+
+
 
 **That cycle is central to how we think change happens.**
 
@@ -37,6 +45,8 @@ Much of this work looks less exciting from the outside than a public event or a 
 This is also why the BAA talks so much about durability, stewardship, and protection. In the current environment, it is not enough to say we care about Black students. We have to build structures that can keep serving them even when legal, political, or institutional conditions become less favorable. It is not enough to raise money. We have to be able to steward resources clearly and credibly. It is not enough to create opportunities. We have to think about how to preserve the purpose of those opportunities over time.
 
 So when we say that the BAA wants to build the best Black student and alumni support system among our peers, we are talking about more than activity. We are talking about building a system in which support is dependable, alumni connection is valuable, giving is meaningful, leadership transitions do not wipe out momentum, and Black-serving purpose remains legible and protected.
+
+
 
 **That vision shows up in practical ways.**
 
