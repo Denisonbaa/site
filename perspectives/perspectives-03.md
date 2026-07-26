@@ -10,6 +10,8 @@ subtitle: "Why Structure — Not Activity — Determines Whether Alumni Organiza
 volNum: "03"
 prevLink: /perspectives-02/
 prevLabel: "Turning Good Intentions Into Durable Impact"
+nextLink: /perspectives-04/
+nextLabel: "The BAA's Theory of Change"
 ---
 
 <p class="essay-intro">Most alumni associations are active. They host events. They organize reunions. They bring people together for moments that matter. And yet, many of those same organizations struggle to sustain momentum over time. Programs start and stop. Leadership transitions feel like resets. Each new group of volunteers rebuilds what the previous group already created. This is not a failure of commitment. It is a failure of structure.</p>

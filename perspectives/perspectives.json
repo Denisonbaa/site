@@ -1,1 +1,1 @@
-{"layout":"essay.njk"}
+{"layout":"essay.njk","permalink":"/perspectives-{{ volNum }}/"}
