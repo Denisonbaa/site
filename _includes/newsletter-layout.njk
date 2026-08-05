@@ -128,7 +128,7 @@
   <div class="nl-two-col">
     {% for story in stories %}
     <div class="story-card">
-      {% if story.image %}<img src="{{ story.image }}" alt="{{ story.title }}">{% endif %}
+      {% if story.image %}<img src="{{ story.image }}" alt="{{ story.title }}" style="object-position: center {{ story.imageFocus | default(50) }}%;">{% endif %}
       <div class="sidebar-section-label">{{ story.tag or "Story" }}</div>
       <h3>{{ story.title }}</h3>
       {{ story.body | markdownify | safe }}
@@ -150,7 +150,7 @@
     <div class="events-grid">
       {% for event in events %}
       <div class="event-item{% if event.image %} event-item--has-image{% endif %}">
-        {% if event.image %}<img class="event-img" src="{{ event.image }}" alt="{{ event.title }}">{% endif %}
+        {% if event.image %}<img class="event-img" src="{{ event.image }}" alt="{{ event.title }}" style="object-position: center {{ event.imageFocus | default(50) }}%;">{% endif %}
         <div class="event-date">
           <span class="month">{{ event.month }}</span>
           <span class="day">{{ event.day }}</span>
