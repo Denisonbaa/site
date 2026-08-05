@@ -101,7 +101,7 @@ collections:
           - { label: "Tag", name: "tag", widget: "string", required: false }
           - { label: "Title", name: "title", widget: "string", required: false }
           - { label: "Body", name: "body", widget: "markdown", required: false }
-          - { label: "Image", name: "image", widget: "image", required: false, hint: "Use a landscape/horizontal photo where possible — square or portrait photos will be cropped to fit a wide frame, favoring the top of the image." }
+          - { label: "Image", name: "image", widget: "image", required: false, hint: "This crops to a wide frame centered on the middle of the photo. Landscape or square photos with the subject centered work best. For a tall portrait/headshot, try to pick one where the face isn't too far above center — a lot of body/room below the face can push the face out of the visible crop." }
           - { label: "Link URL", name: "link", widget: "string", required: false }
           - { label: "Link Text", name: "linkText", widget: "string", required: false }
       - label: "Events (charcoal band)"
@@ -113,7 +113,7 @@ collections:
           - { label: "Day", name: "day", widget: "string", required: false }
           - { label: "Event Title", name: "title", widget: "string", required: false }
           - { label: "Location / Details", name: "location", widget: "string", required: false }
-          - { label: "Image", name: "image", widget: "image", required: false, hint: "Use a landscape/horizontal photo where possible — square or portrait photos will be cropped to fit a wide frame, favoring the top of the image." }
+          - { label: "Image", name: "image", widget: "image", required: false, hint: "This crops to a short, wide frame centered on the middle of the photo, so it's unforgiving of tall portraits — a landscape or square photo with the subject centered works best." }
       - label: "Body (main article content)"
         name: "body"
         widget: "markdown"
