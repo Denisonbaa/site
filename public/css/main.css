@@ -493,7 +493,7 @@ footer .social a:hover { color: var(--gold); }
   border-bottom: 1px solid rgba(44,44,44,0.12);
 }
 .nl-feature-img-wrap { position: relative; margin-bottom: 1.5rem; overflow: hidden; border-radius: 2px; }
-.nl-feature-img-wrap img { width: 100%; height: 320px; object-fit: cover; object-position: center top; display: block; }
+.nl-feature-img-wrap img { width: 100%; height: 320px; object-fit: cover; object-position: center; display: block; }
 .nl-feature-img-caption { font-size: 0.72rem; color: var(--mid-gray); margin-top: 0.4rem; font-style: italic; }
 .nl-feature h2 {
   font-family: 'EB Garamond', serif; font-size: 2rem; font-weight: 500;
@@ -558,7 +558,7 @@ footer .social a:hover { color: var(--gold); }
   gap: 2.5rem; padding: 3rem 0; border-bottom: 1px solid rgba(44,44,44,0.12);
 }
 .story-card img {
-  width: 100%; height: 200px; object-fit: cover; object-position: center top; display: block;
+  width: 100%; height: 200px; object-fit: cover; object-position: center; display: block;
   margin-bottom: 1rem; border-radius: 2px;
 }
 .story-card h3 {
@@ -604,7 +604,7 @@ footer .social a:hover { color: var(--gold); }
 }
 .event-info p { font-size: 0.75rem; color: rgba(255,255,255,0.55); line-height: 1.4; }
 .event-item--has-image { flex-direction: column; }
-.event-img { width: 100%; height: 140px; object-fit: cover; object-position: center top; display: block; margin-bottom: 0.75rem; }
+.event-img { width: 100%; height: 140px; object-fit: cover; object-position: center; display: block; margin-bottom: 0.75rem; }
 
 .nl-footer {
   background: var(--cream); border-top: 1px solid rgba(44,44,44,0.12);
