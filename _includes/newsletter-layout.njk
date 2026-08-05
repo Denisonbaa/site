@@ -131,7 +131,7 @@
       {% if story.image %}<img src="{{ story.image }}" alt="{{ story.title }}">{% endif %}
       <div class="sidebar-section-label">{{ story.tag or "Story" }}</div>
       <h3>{{ story.title }}</h3>
-      <p>{{ story.body }}</p>
+      {{ story.body | markdownify | safe }}
       {% if story.link %}<a href="{{ story.link }}" class="read-more">{{ story.linkText or "Read more" }} →</a>{% endif %}
     </div>
     {% endfor %}
