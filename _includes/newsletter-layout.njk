@@ -81,7 +81,7 @@
         </div>
         <p class="progress-note">{{ fundNote or "" }}</p>
         {% endif %}
-        {% if fundLink %}<a href="{{ fundLink }}" class="read-more">Give Now →</a>{% endif %}
+        {% if fundLink and showFundLink %}<a href="{{ fundLink }}" class="read-more">Give Now →</a>{% endif %}
       </div>
       {% endif %}
 

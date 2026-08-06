@@ -86,6 +86,12 @@ collections:
         name: "fundLink"
         widget: "string"
         required: false
+      - label: "Show \"Give Now\" Button"
+        name: "showFundLink"
+        widget: "boolean"
+        default: false
+        required: false
+        hint: "Turn this on once there's a real giving page to send the link above to. Leave off to hide the button entirely, even if a link is saved above."
       - label: "Stats (sidebar)"
         name: "stats"
         widget: "list"
