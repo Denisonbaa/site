@@ -111,6 +111,7 @@ collections:
           - { label: "Image Focus (0 = top of photo, 50 = centered, 100 = bottom of photo)", name: "imageFocus", widget: "number", value_type: "int", min: 0, max: 100, default: 50, required: false, hint: "If the subject's face is being cropped out, nudge this number toward 0 (shows more of the top of the photo) or toward 100 (shows more of the bottom), then check the preview." }
           - { label: "Link URL", name: "link", widget: "string", required: false }
           - { label: "Link Text", name: "linkText", widget: "string", required: false }
+          - { label: "Full-Width Card (spans both columns)", name: "fullWidth", widget: "boolean", default: false, required: false, hint: "Turn on to make this card span the full row instead of sharing space with the card next to it — useful for a single featured story." }
       - label: "Events (charcoal band)"
         name: "events"
         widget: "list"

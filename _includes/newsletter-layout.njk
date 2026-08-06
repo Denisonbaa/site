@@ -127,7 +127,7 @@
 <div class="nl-wrap">
   <div class="nl-two-col">
     {% for story in stories %}
-    <div class="story-card">
+    <div class="story-card{% if story.fullWidth %} story-card--full{% endif %}">
       {% if story.image %}<img src="{{ story.image }}" alt="{{ story.title }}" style="object-position: center {{ story.imageFocus | default(50) }}%;">{% endif %}
       <div class="sidebar-section-label">{{ story.tag or "Story" }}</div>
       <h3>{{ story.title }}</h3>
