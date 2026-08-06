@@ -16,6 +16,97 @@
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // ── "Insert Table" editor component ──────────────────────────
+    // Adds a "Table" button to the markdown toolbar. Editors build a table
+    // via a form (header toggle + rows of cells) instead of typing HTML.
+    // Output is a single-line <table class="content-table"> block, which
+    // passes straight through eleventy's markdown-it({ html: true }) the
+    // same way hand-typed blocks like <div class="essay-section"> already do.
+    function escapeHtml(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function buildTableHtml(obj) {
+      var rows = (obj && obj.rows) || [];
+      var hasHeader = !(obj && obj.hasHeader === false);
+      var headerRow = hasHeader ? rows[0] : null;
+      var bodyRows = hasHeader ? rows.slice(1) : rows;
+
+      var html = '<table class="content-table">';
+      if (headerRow) {
+        html += '<thead><tr>' +
+          (headerRow.cells || []).map(function (c) { return '<th>' + escapeHtml(c) + '</th>'; }).join('') +
+          '</tr></thead>';
+      }
+      html += '<tbody>' +
+        bodyRows.map(function (row) {
+          return '<tr>' + (row.cells || []).map(function (c) { return '<td>' + escapeHtml(c) + '</td>'; }).join('') + '</tr>';
+        }).join('') +
+        '</tbody></table>';
+      return html;
+    }
+
+    function stripTags(s) {
+      return s.replace(/<[^>]+>/g, '')
+        .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').trim();
+    }
+
+    function parseTableHtml(html) {
+      var hasHeader = /<thead[\s>]/.test(html);
+      var rows = [];
+      var thead = html.match(/<thead[\s\S]*?<\/thead>/);
+      if (thead) {
+        (thead[0].match(/<tr[\s\S]*?<\/tr>/g) || []).forEach(function (tr) {
+          rows.push({ cells: (tr.match(/<th[\s\S]*?<\/th>/g) || []).map(stripTags) });
+        });
+      }
+      var tbody = html.match(/<tbody[\s\S]*?<\/tbody>/);
+      if (tbody) {
+        (tbody[0].match(/<tr[\s\S]*?<\/tr>/g) || []).forEach(function (tr) {
+          rows.push({ cells: (tr.match(/<td[\s\S]*?<\/td>/g) || []).map(stripTags) });
+        });
+      }
+      return { hasHeader: hasHeader, rows: rows };
+    }
+
+    CMS.registerEditorComponent({
+      id: 'content-table',
+      label: 'Table',
+      fields: [
+        {
+          label: 'Include a header row?',
+          name: 'hasHeader',
+          widget: 'boolean',
+          default: true,
+          hint: 'If checked, the first row below is styled as bold column headers.'
+        },
+        {
+          label: 'Table Rows',
+          name: 'rows',
+          widget: 'list',
+          minimize_collapsed: true,
+          default: [
+            { cells: ['Column 1', 'Column 2', 'Column 3'] },
+            { cells: ['', '', ''] }
+          ],
+          hint: 'Every row should have the same number of cells. Use "Add Row Cells" inside a row to add a column to that row — remember to add a matching cell to every other row too, or the columns won’t line up. To reshape a table with a very different number of columns, it’s easiest to delete this table and insert a fresh one.',
+          fields: [
+            {
+              label: 'Row Cells (in order, left to right)',
+              name: 'cells',
+              widget: 'list',
+              field: { label: 'Cell', name: 'text', widget: 'string', default: '' }
+            }
+          ]
+        }
+      ],
+      pattern: /<table class="content-table">[\s\S]*?<\/table>/,
+      fromBlock: function (match) { return parseTableHtml(match[0]); },
+      toBlock: buildTableHtml,
+      toPreview: buildTableHtml
+    });
+
     var PerspectivesPreview = createClass({
       render: function() {
         var entry = this.props.entry;
