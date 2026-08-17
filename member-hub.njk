@@ -11,520 +11,670 @@ description: Get involved with the Black Alumni Association of Denison Universit
   <p class="page-subtitle">Your gateway to the BAA network</p>
 </section>
 
-<!-- ACTION CARDS -->
-<div class="actions-section">
-  <div class="section-label">Get Involved</div>
-  <h2 class="section-title">Connect. Get Involved. Be Informed. Make an Impact.</h2>
-  <div class="action-grid">
-    <div class="action-card">
-      <div class="action-num">01</div>
-      <h3>Join or Update Your Profile</h3>
-      <p>Add yourself to the BAA directory or update your contact information to stay connected with the community.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="action-btn" target="_blank" rel="noopener">Join or Update Your Profile</a>
-    </div>
-    <div class="action-card">
-      <div class="action-num">02</div>
-      <h3>Serve on a Committee</h3>
-      <p>Help shape the work of the BAA by volunteering on one of our four standing committees. Your expertise matters.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScsJDi2Z_uQPb_hf_DWH128lplpstwqKlnwfs0Bxkn2MCTeDQ/viewform" class="action-btn" target="_blank" rel="noopener">Serve on a Committee</a>
-    </div>
-    <div class="action-card">
-      <div class="action-num">03</div>
-      <h3>Member Access</h3>
-      <p>Access member resources, meeting notes, and BAA materials reserved for alumni in the network.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8ss6e6pSmA1IvAkPTCJJ5epzHBNtyZBaH6bw0boxOB5vLnA/viewform" class="action-btn" target="_blank" rel="noopener">Member Access</a>
-    </div>
-    <div class="action-card">
-      <div class="action-num">04</div>
-      <h3>Read Perspectives</h3>
-      <p>A series exploring the strategies that shape the work of the BAA. Thought leadership from and for the community.</p>
-      <a href="/perspectives/" class="action-btn">Read Perspectives</a>
-    </div>
-  </div>
-</div>
+<!-- TWO-COLUMN LAYOUT: calendar sidebar (left) + page content (right) -->
+<style>
+  .member-hub-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0 60px;
+  }
 
-<!-- CALENDAR -->
-<section class="baa-cal" aria-label="BAA Calendar">
-  <style>
-    .baa-cal {
-      --crimson: #9B2335;
-      --green: #078D70;
-      --charcoal: #2C2C2C;
-      --cream: #F9F5EE;
-      --gold: #C9A84C;
-      font-family: 'Open Sans', Arial, sans-serif;
-      color: var(--charcoal);
-      background: var(--cream);
-      border: 1px solid rgba(44,44,44,0.1);
-      border-radius: 8px;
-      padding: 2rem;
-      max-width: 900px;
-      margin: 2rem auto;
+  .member-hub-sidebar {
+    flex: 0 0 320px;
+    position: sticky;
+    top: 96px;
+  }
+
+  .member-hub-main {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+
+  /* The layout's own 60px gutter replaces each section's left/right padding
+     so section backgrounds fill the main column edge-to-edge without a
+     double gutter. */
+  .member-hub-main > div {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media (max-width: 900px) {
+    .member-hub-layout {
+      flex-direction: column;
+      padding: 0 24px;
+      gap: 32px;
     }
-
-    .baa-cal * { box-sizing: border-box; }
-
-    .baa-cal__heading {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 2rem;
-      color: var(--crimson);
-      margin: 0 0 0.25rem;
+    .member-hub-sidebar {
+      flex-basis: auto;
+      width: 100%;
+      position: static;
     }
+  }
 
-    .baa-cal__subheading {
-      margin: 0 0 1.5rem;
-      font-size: 0.95rem;
-      color: rgba(44,44,44,0.75);
-    }
+  @media (max-width: 600px) {
+    .member-hub-layout { padding: 0 16px; }
+  }
+</style>
 
-    .baa-cal__controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-      margin-bottom: 1.75rem;
-    }
+<div class="member-hub-layout">
 
-    .baa-cal__search {
-      flex: 1 1 220px;
-      padding: 0.6rem 0.9rem;
-      border: 1px solid rgba(44,44,44,0.25);
-      border-radius: 999px;
-      font-family: inherit;
-      font-size: 0.95rem;
-      background: #fff;
-      color: var(--charcoal);
-    }
+  <!-- CALENDAR SIDEBAR -->
+  <aside class="member-hub-sidebar" aria-label="BAA Calendar">
+    <section class="baa-cal">
+      <style>
+        .baa-cal {
+          --crimson: #9B2335;
+          --green: #078D70;
+          --charcoal: #2C2C2C;
+          --cream: #F9F5EE;
+          --gold: #C9A84C;
+          font-family: 'Open Sans', Arial, sans-serif;
+          color: var(--charcoal);
+          background: var(--cream);
+          border: 1px solid rgba(44,44,44,0.1);
+          border-radius: 8px;
+          padding: 1.5rem;
+          width: 100%;
+        }
 
-    .baa-cal__search:focus {
-      outline: 2px solid var(--gold);
-      outline-offset: 1px;
-    }
+        .baa-cal * { box-sizing: border-box; }
 
-    .baa-cal__filters {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+        .baa-cal__heading {
+          font-family: 'EB Garamond', Georgia, serif;
+          font-size: 1.6rem;
+          color: var(--crimson);
+          margin: 0 0 0.25rem;
+        }
 
-    .baa-cal__filter-btn {
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      border: 1px solid rgba(44,44,44,0.25);
-      background: #fff;
-      color: var(--charcoal);
-      cursor: pointer;
-      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-    }
+        .baa-cal__subheading {
+          margin: 0 0 1.25rem;
+          font-size: 0.85rem;
+          color: rgba(44,44,44,0.75);
+        }
 
-    .baa-cal__filter-btn:hover {
-      border-color: var(--crimson);
-    }
+        .baa-cal__controls {
+          display: flex;
+          flex-direction: column;
+          gap: 0.65rem;
+          margin-bottom: 1.5rem;
+        }
 
-    .baa-cal__filter-btn:focus-visible {
-      outline: 2px solid var(--gold);
-      outline-offset: 2px;
-    }
+        .baa-cal__search {
+          padding: 0.6rem 0.9rem;
+          border: 1px solid rgba(44,44,44,0.25);
+          border-radius: 999px;
+          font-family: inherit;
+          font-size: 0.9rem;
+          background: #fff;
+          color: var(--charcoal);
+          width: 100%;
+        }
 
-    .baa-cal__filter-btn[aria-pressed="true"] {
-      background: var(--crimson);
-      border-color: var(--crimson);
-      color: #fff;
-    }
+        .baa-cal__search:focus {
+          outline: 2px solid var(--gold);
+          outline-offset: 1px;
+        }
 
-    .baa-cal__status {
-      padding: 1.5rem 0;
-      text-align: center;
-      font-size: 0.95rem;
-      color: rgba(44,44,44,0.7);
-    }
+        .baa-cal__filters {
+          display: flex;
+          gap: 0.4rem;
+          flex-wrap: wrap;
+        }
 
-    .baa-cal__month-heading {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 1.3rem;
-      color: var(--charcoal);
-      border-bottom: 2px solid var(--gold);
-      padding-bottom: 0.35rem;
-      margin: 1.75rem 0 1rem;
-    }
+        .baa-cal__filter-btn {
+          font-family: inherit;
+          font-size: 0.78rem;
+          font-weight: 600;
+          padding: 0.4rem 0.8rem;
+          border-radius: 999px;
+          border: 1px solid rgba(44,44,44,0.25);
+          background: #fff;
+          color: var(--charcoal);
+          cursor: pointer;
+          transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+        }
 
-    .baa-cal__month-heading:first-of-type {
-      margin-top: 0;
-    }
+        .baa-cal__filter-btn:hover {
+          border-color: var(--crimson);
+        }
 
-    .baa-cal__event {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid rgba(44,44,44,0.08);
-    }
+        .baa-cal__filter-btn:focus-visible {
+          outline: 2px solid var(--gold);
+          outline-offset: 2px;
+        }
 
-    .baa-cal__event:last-child {
-      border-bottom: none;
-    }
+        .baa-cal__filter-btn[aria-pressed="true"] {
+          background: var(--crimson);
+          border-color: var(--crimson);
+          color: #fff;
+        }
 
-    .baa-cal__event-date {
-      flex: 0 0 64px;
-      text-align: center;
-      font-family: 'EB Garamond', Georgia, serif;
-      color: var(--crimson);
-      line-height: 1.1;
-    }
+        .baa-cal__status {
+          padding: 1.5rem 0;
+          text-align: center;
+          font-size: 0.9rem;
+          color: rgba(44,44,44,0.7);
+        }
 
-    .baa-cal__event-date .day {
-      display: block;
-      font-size: 1.6rem;
-      font-weight: 700;
-    }
+        .baa-cal__month-heading {
+          font-family: 'EB Garamond', Georgia, serif;
+          font-size: 1.15rem;
+          color: var(--charcoal);
+          border-bottom: 2px solid var(--gold);
+          padding-bottom: 0.35rem;
+          margin: 1.5rem 0 0.85rem;
+        }
 
-    .baa-cal__event-date .weekday {
-      display: block;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: rgba(44,44,44,0.6);
-      font-family: 'Open Sans', Arial, sans-serif;
-    }
+        .baa-cal__month-heading:first-of-type {
+          margin-top: 0;
+        }
 
-    .baa-cal__event-body { flex: 1; }
+        .baa-cal__event {
+          display: flex;
+          gap: 0.75rem;
+          align-items: flex-start;
+          padding: 0.85rem 0;
+          border-bottom: 1px solid rgba(44,44,44,0.08);
+        }
 
-    .baa-cal__event-title {
-      font-weight: 700;
-      margin: 0 0 0.2rem;
-      color: var(--charcoal);
-    }
+        .baa-cal__event:last-child {
+          border-bottom: none;
+        }
 
-    .baa-cal__event-meta {
-      font-size: 0.85rem;
-      color: rgba(44,44,44,0.7);
-      margin: 0 0 0.3rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      align-items: center;
-    }
+        .baa-cal__event-date {
+          flex: 0 0 46px;
+          text-align: center;
+          font-family: 'EB Garamond', Georgia, serif;
+          color: var(--crimson);
+          line-height: 1.1;
+        }
 
-    .baa-cal__tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      color: #fff;
-    }
+        .baa-cal__event-date .day {
+          display: block;
+          font-size: 1.3rem;
+          font-weight: 700;
+        }
 
-    .baa-cal__tag--events { background: var(--green); }
-    .baa-cal__tag--committee { background: var(--gold); color: var(--charcoal); }
+        .baa-cal__event-date .weekday {
+          display: block;
+          font-size: 0.65rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: rgba(44,44,44,0.6);
+          font-family: 'Open Sans', Arial, sans-serif;
+        }
 
-    .baa-cal__event-desc {
-      font-size: 0.88rem;
-      color: rgba(44,44,44,0.85);
-      margin: 0;
-    }
+        .baa-cal__event-body { flex: 1; min-width: 0; }
 
-    .baa-cal__event-desc a {
-      color: var(--crimson);
-      text-decoration: underline;
-    }
+        .baa-cal__event-title {
+          font-weight: 700;
+          font-size: 0.92rem;
+          margin: 0 0 0.2rem;
+          color: var(--charcoal);
+        }
 
-    .baa-cal__event-desc a:hover,
-    .baa-cal__event-desc a:focus-visible {
-      color: var(--gold);
-    }
+        .baa-cal__event-meta {
+          font-size: 0.78rem;
+          color: rgba(44,44,44,0.7);
+          margin: 0 0 0.3rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+          align-items: center;
+        }
 
-    @media (max-width: 480px) {
-      .baa-cal { padding: 1.25rem; }
-      .baa-cal__event-date { flex-basis: 50px; }
-    }
-  </style>
+        .baa-cal__tag {
+          display: inline-block;
+          font-size: 0.65rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.03em;
+          padding: 0.15rem 0.5rem;
+          border-radius: 999px;
+          color: #fff;
+        }
 
-  <h2 class="baa-cal__heading">Calendar - What's Coming Up</h2>
-  <p class="baa-cal__subheading">Search or filter to find what you're looking for.</p>
+        .baa-cal__tag--events { background: var(--green); }
+        .baa-cal__tag--committee { background: var(--gold); color: var(--charcoal); }
 
-  <div class="baa-cal__controls">
-    <input
-      type="text"
-      class="baa-cal__search"
-      id="baaCalSearch"
-      placeholder="Search events..."
-      aria-label="Search calendar events"
-    />
-    <div class="baa-cal__filters" role="group" aria-label="Filter by calendar">
-      <button type="button" class="baa-cal__filter-btn" data-filter="all" aria-pressed="true">All</button>
-      <button type="button" class="baa-cal__filter-btn" data-filter="events" aria-pressed="false">Programs & Events</button>
-      <button type="button" class="baa-cal__filter-btn" data-filter="committee" aria-pressed="false">Committee</button>
-    </div>
-  </div>
+        .baa-cal__event-desc {
+          font-size: 0.82rem;
+          color: rgba(44,44,44,0.85);
+          margin: 0;
+          overflow-wrap: break-word;
+        }
 
-  <div id="baaCalContent">
-    <p class="baa-cal__status" id="baaCalStatus">Loading the calendar...</p>
-  </div>
-</section>
+        .baa-cal__event-desc a {
+          color: var(--crimson);
+          text-decoration: underline;
+        }
 
-<script>
-(function () {
-  // ---- CONFIG: calendar IDs and API key ----
-  var API_KEY = 'AIzaSyDTeNuoU4V1XRA-XRFALKq7HQmn0wxIRw8';
-  var CALENDARS = [
-    { id: '12a51878f8c1e7eb5adc155dbfc2efad5393c5816c3941e8421b31d43c22e18f@group.calendar.google.com', source: 'events' },
-    { id: '22c4724794434a71948192886e1264c6f2e860f7e68fc239cea4cb3d0fea96e8@group.calendar.google.com', source: 'committee' }
-  ];
-  var SOURCE_LABELS = { events: 'Programs & Events', committee: 'Committee' };
-  var MAX_RESULTS_PER_CALENDAR = 50;
-  // -------------------------------------------
+        .baa-cal__event-desc a:hover,
+        .baa-cal__event-desc a:focus-visible {
+          color: var(--gold);
+        }
 
-  var allEvents = [];
-  var activeFilter = 'all';
-  var searchTerm = '';
+        .baa-cal__pagination {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+          margin-top: 1.25rem;
+          padding-top: 1rem;
+          border-top: 1px solid rgba(44,44,44,0.1);
+        }
 
-  var statusEl = document.getElementById('baaCalStatus');
-  var contentEl = document.getElementById('baaCalContent');
-  var searchEl = document.getElementById('baaCalSearch');
-  var filterBtns = document.querySelectorAll('.baa-cal__filter-btn');
+        .baa-cal__page-btn {
+          font-family: inherit;
+          font-size: 0.78rem;
+          font-weight: 600;
+          padding: 0.4rem 0.75rem;
+          border-radius: 999px;
+          border: 1px solid var(--crimson);
+          background: #fff;
+          color: var(--crimson);
+          cursor: pointer;
+          transition: background 0.15s ease, color 0.15s ease;
+          white-space: nowrap;
+        }
 
-  function fetchCalendar(cal) {
-    var timeMin = new Date().toISOString();
-    var url = 'https://www.googleapis.com/calendar/v3/calendars/' +
-      encodeURIComponent(cal.id) +
-      '/events?key=' + API_KEY +
-      '&singleEvents=true&orderBy=startTime&timeMin=' + encodeURIComponent(timeMin) +
-      '&maxResults=' + MAX_RESULTS_PER_CALENDAR;
+        .baa-cal__page-btn:hover:not(:disabled) {
+          background: var(--crimson);
+          color: #fff;
+        }
 
-    return fetch(url)
-      .then(function (res) {
-        if (!res.ok) throw new Error('Calendar fetch failed: ' + res.status);
-        return res.json();
-      })
-      .then(function (data) {
-        return (data.items || []).map(function (item) {
-          var startRaw = item.start && (item.start.dateTime || item.start.date);
-          var isAllDay = !!(item.start && item.start.date && !item.start.dateTime);
-          return {
-            id: item.id,
-            title: item.summary || '(Untitled event)',
-            description: item.description || '',
-            location: item.location || '',
-            start: startRaw ? new Date(startRaw) : null,
-            allDay: isAllDay,
-            source: cal.source
-          };
+        .baa-cal__page-btn:focus-visible {
+          outline: 2px solid var(--gold);
+          outline-offset: 2px;
+        }
+
+        .baa-cal__page-btn:disabled {
+          opacity: 0.35;
+          cursor: default;
+          border-color: rgba(44,44,44,0.25);
+          color: rgba(44,44,44,0.4);
+          background: #fff;
+        }
+
+        .baa-cal__page-info {
+          font-size: 0.72rem;
+          color: rgba(44,44,44,0.6);
+          white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+          .baa-cal { padding: 1.25rem; }
+        }
+      </style>
+
+      <h2 class="baa-cal__heading">Calendar - What's Coming Up</h2>
+      <p class="baa-cal__subheading">Search or filter to find what you're looking for.</p>
+
+      <div class="baa-cal__controls">
+        <input
+          type="text"
+          class="baa-cal__search"
+          id="baaCalSearch"
+          placeholder="Search events..."
+          aria-label="Search calendar events"
+        />
+        <div class="baa-cal__filters" role="group" aria-label="Filter by calendar">
+          <button type="button" class="baa-cal__filter-btn" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="baa-cal__filter-btn" data-filter="events" aria-pressed="false">Programs & Events</button>
+          <button type="button" class="baa-cal__filter-btn" data-filter="committee" aria-pressed="false">Committee</button>
+        </div>
+      </div>
+
+      <div id="baaCalContent">
+        <p class="baa-cal__status" id="baaCalStatus">Loading the calendar...</p>
+      </div>
+    </section>
+
+    <script>
+    (function () {
+      // ---- CONFIG: calendar IDs, API key, and pagination size ----
+      var API_KEY = 'AIzaSyDTeNuoU4V1XRA-XRFALKq7HQmn0wxIRw8';
+      var CALENDARS = [
+        { id: '12a51878f8c1e7eb5adc155dbfc2efad5393c5816c3941e8421b31d43c22e18f@group.calendar.google.com', source: 'events' },
+        { id: '22c4724794434a71948192886e1264c6f2e860f7e68fc239cea4cb3d0fea96e8@group.calendar.google.com', source: 'committee' }
+      ];
+      var SOURCE_LABELS = { events: 'Programs & Events', committee: 'Committee' };
+      var MAX_RESULTS_PER_CALENDAR = 50;
+      var PAGE_SIZE = 5;
+      // -------------------------------------------------------------
+
+      var allEvents = [];
+      var activeFilter = 'all';
+      var searchTerm = '';
+      var currentPage = 0;
+
+      var statusEl = document.getElementById('baaCalStatus');
+      var contentEl = document.getElementById('baaCalContent');
+      var searchEl = document.getElementById('baaCalSearch');
+      var filterBtns = document.querySelectorAll('.baa-cal__filter-btn');
+
+      function fetchCalendar(cal) {
+        var timeMin = new Date().toISOString();
+        var url = 'https://www.googleapis.com/calendar/v3/calendars/' +
+          encodeURIComponent(cal.id) +
+          '/events?key=' + API_KEY +
+          '&singleEvents=true&orderBy=startTime&timeMin=' + encodeURIComponent(timeMin) +
+          '&maxResults=' + MAX_RESULTS_PER_CALENDAR;
+
+        return fetch(url)
+          .then(function (res) {
+            if (!res.ok) throw new Error('Calendar fetch failed: ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            return (data.items || []).map(function (item) {
+              var startRaw = item.start && (item.start.dateTime || item.start.date);
+              var isAllDay = !!(item.start && item.start.date && !item.start.dateTime);
+              return {
+                id: item.id,
+                title: item.summary || '(Untitled event)',
+                description: item.description || '',
+                location: item.location || '',
+                start: startRaw ? new Date(startRaw) : null,
+                allDay: isAllDay,
+                source: cal.source
+              };
+            });
+          });
+      }
+
+      function loadAll() {
+        Promise.all(CALENDARS.map(fetchCalendar))
+          .then(function (results) {
+            allEvents = results.flat().filter(function (e) { return e.start; });
+            allEvents.sort(function (a, b) { return a.start - b.start; });
+            render();
+          })
+          .catch(function (err) {
+            console.error(err);
+            statusEl.textContent = "The calendar couldn't be loaded right now. Try refreshing, or check back shortly.";
+            statusEl.style.display = 'block';
+          });
+      }
+
+      // Google Calendar's rich-text description editor stores formatting (links,
+      // bold, line breaks) as literal HTML in the API response. Render it as HTML
+      // so links work, but only after stripping it down to a safe allowlist —
+      // the description field is editable by anyone with edit access to the
+      // calendar, not just this page's maintainer.
+      var ALLOWED_TAGS = { A: 1, B: 1, STRONG: 1, I: 1, EM: 1, U: 1, BR: 1, P: 1, SPAN: 1, DIV: 1, UL: 1, OL: 1, LI: 1 };
+      var ALLOWED_ATTRS = { A: ['href'] };
+
+      function sanitizeNode(parent) {
+        var node = parent.firstChild;
+        while (node) {
+          var next = node.nextSibling;
+          if (node.nodeType === 1) {
+            var tag = node.tagName;
+            if (!ALLOWED_TAGS[tag]) {
+              sanitizeNode(node);
+              while (node.firstChild) parent.insertBefore(node.firstChild, node);
+              parent.removeChild(node);
+            } else {
+              var allowedAttrs = ALLOWED_ATTRS[tag] || [];
+              for (var i = node.attributes.length - 1; i >= 0; i--) {
+                var attrName = node.attributes[i].name;
+                if (allowedAttrs.indexOf(attrName) === -1) node.removeAttribute(attrName);
+              }
+              if (tag === 'A') {
+                var href = node.getAttribute('href') || '';
+                if (!/^https?:\/\//i.test(href)) {
+                  node.removeAttribute('href');
+                }
+                node.setAttribute('target', '_blank');
+                node.setAttribute('rel', 'noopener noreferrer');
+              }
+              sanitizeNode(node);
+            }
+          } else if (node.nodeType !== 3) {
+            parent.removeChild(node);
+          }
+          node = next;
+        }
+      }
+
+      function sanitizeDescriptionHTML(html) {
+        var template = document.createElement('template');
+        template.innerHTML = html;
+        sanitizeNode(template.content);
+        return template.innerHTML;
+      }
+
+      function render() {
+        var filtered = allEvents.filter(function (e) {
+          var matchesFilter = activeFilter === 'all' || e.source === activeFilter;
+          var matchesSearch = !searchTerm ||
+            e.title.toLowerCase().indexOf(searchTerm) !== -1 ||
+            e.description.toLowerCase().indexOf(searchTerm) !== -1 ||
+            e.location.toLowerCase().indexOf(searchTerm) !== -1;
+          return matchesFilter && matchesSearch;
+        });
+
+        contentEl.innerHTML = '';
+
+        if (allEvents.length === 0) {
+          contentEl.innerHTML = '<p class="baa-cal__status">Nothing on the calendar yet. Check back soon.</p>';
+          return;
+        }
+
+        if (filtered.length === 0) {
+          contentEl.innerHTML = '<p class="baa-cal__status">No events match your search.</p>';
+          return;
+        }
+
+        var totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+        if (currentPage > totalPages - 1) currentPage = totalPages - 1;
+        if (currentPage < 0) currentPage = 0;
+
+        var pageStart = currentPage * PAGE_SIZE;
+        var pageItems = filtered.slice(pageStart, pageStart + PAGE_SIZE);
+
+        var currentMonthKey = '';
+        var listWrap = document.createElement('div');
+
+        pageItems.forEach(function (e) {
+          var monthKey = e.start.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+          if (monthKey !== currentMonthKey) {
+            currentMonthKey = monthKey;
+            var monthHeading = document.createElement('h3');
+            monthHeading.className = 'baa-cal__month-heading';
+            monthHeading.textContent = monthKey;
+            listWrap.appendChild(monthHeading);
+          }
+
+          var row = document.createElement('div');
+          row.className = 'baa-cal__event';
+
+          var dateBlock = document.createElement('div');
+          dateBlock.className = 'baa-cal__event-date';
+          dateBlock.innerHTML =
+            '<span class="day">' + e.start.getDate() + '</span>' +
+            '<span class="weekday">' + e.start.toLocaleDateString('en-US', { weekday: 'short' }) + '</span>';
+
+          var body = document.createElement('div');
+          body.className = 'baa-cal__event-body';
+
+          var title = document.createElement('p');
+          title.className = 'baa-cal__event-title';
+          title.textContent = e.title;
+
+          var meta = document.createElement('div');
+          meta.className = 'baa-cal__event-meta';
+
+          var tag = document.createElement('span');
+          tag.className = 'baa-cal__tag baa-cal__tag--' + e.source;
+          tag.textContent = SOURCE_LABELS[e.source];
+          meta.appendChild(tag);
+
+          var timeText = document.createElement('span');
+          timeText.textContent = e.allDay
+            ? 'All day'
+            : e.start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          meta.appendChild(timeText);
+
+          if (e.location) {
+            var loc = document.createElement('span');
+            loc.textContent = e.location;
+            meta.appendChild(loc);
+          }
+
+          body.appendChild(title);
+          body.appendChild(meta);
+
+          if (e.description) {
+            var desc = document.createElement('p');
+            desc.className = 'baa-cal__event-desc';
+            desc.innerHTML = sanitizeDescriptionHTML(e.description);
+            body.appendChild(desc);
+          }
+
+          row.appendChild(dateBlock);
+          row.appendChild(body);
+          listWrap.appendChild(row);
+        });
+
+        contentEl.appendChild(listWrap);
+
+        if (totalPages > 1) {
+          var pagination = document.createElement('div');
+          pagination.className = 'baa-cal__pagination';
+
+          var prevBtn = document.createElement('button');
+          prevBtn.type = 'button';
+          prevBtn.className = 'baa-cal__page-btn';
+          prevBtn.textContent = '‹ Previous';
+          prevBtn.disabled = currentPage === 0;
+          prevBtn.setAttribute('aria-label', 'Show previous 5 events');
+          prevBtn.addEventListener('click', function () {
+            currentPage -= 1;
+            render();
+          });
+
+          var info = document.createElement('span');
+          info.className = 'baa-cal__page-info';
+          info.textContent = 'Page ' + (currentPage + 1) + ' of ' + totalPages;
+
+          var nextBtn = document.createElement('button');
+          nextBtn.type = 'button';
+          nextBtn.className = 'baa-cal__page-btn';
+          nextBtn.textContent = 'Next ›';
+          nextBtn.disabled = currentPage === totalPages - 1;
+          nextBtn.setAttribute('aria-label', 'Show next 5 events');
+          nextBtn.addEventListener('click', function () {
+            currentPage += 1;
+            render();
+          });
+
+          pagination.appendChild(prevBtn);
+          pagination.appendChild(info);
+          pagination.appendChild(nextBtn);
+          contentEl.appendChild(pagination);
+        }
+      }
+
+      searchEl.addEventListener('input', function () {
+        searchTerm = searchEl.value.trim().toLowerCase();
+        currentPage = 0;
+        render();
+      });
+
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          btn.setAttribute('aria-pressed', 'true');
+          activeFilter = btn.getAttribute('data-filter');
+          currentPage = 0;
+          render();
         });
       });
-  }
 
-  function loadAll() {
-    Promise.all(CALENDARS.map(fetchCalendar))
-      .then(function (results) {
-        allEvents = results.flat().filter(function (e) { return e.start; });
-        allEvents.sort(function (a, b) { return a.start - b.start; });
-        render();
-      })
-      .catch(function (err) {
-        console.error(err);
-        statusEl.textContent = "The calendar couldn't be loaded right now. Try refreshing, or check back shortly.";
-        statusEl.style.display = 'block';
-      });
-  }
+      loadAll();
+    })();
+    </script>
+  </aside>
 
-  // Google Calendar's rich-text description editor stores formatting (links,
-  // bold, line breaks) as literal HTML in the API response. Render it as HTML
-  // so links work, but only after stripping it down to a safe allowlist —
-  // the description field is editable by anyone with edit access to the
-  // calendar, not just this page's maintainer.
-  var ALLOWED_TAGS = { A: 1, B: 1, STRONG: 1, I: 1, EM: 1, U: 1, BR: 1, P: 1, SPAN: 1, DIV: 1, UL: 1, OL: 1, LI: 1 };
-  var ALLOWED_ATTRS = { A: ['href'] };
+  <!-- MAIN CONTENT -->
+  <div class="member-hub-main">
 
-  function sanitizeNode(parent) {
-    var node = parent.firstChild;
-    while (node) {
-      var next = node.nextSibling;
-      if (node.nodeType === 1) {
-        var tag = node.tagName;
-        if (!ALLOWED_TAGS[tag]) {
-          sanitizeNode(node);
-          while (node.firstChild) parent.insertBefore(node.firstChild, node);
-          parent.removeChild(node);
-        } else {
-          var allowedAttrs = ALLOWED_ATTRS[tag] || [];
-          for (var i = node.attributes.length - 1; i >= 0; i--) {
-            var attrName = node.attributes[i].name;
-            if (allowedAttrs.indexOf(attrName) === -1) node.removeAttribute(attrName);
-          }
-          if (tag === 'A') {
-            var href = node.getAttribute('href') || '';
-            if (!/^https?:\/\//i.test(href)) {
-              node.removeAttribute('href');
-            }
-            node.setAttribute('target', '_blank');
-            node.setAttribute('rel', 'noopener noreferrer');
-          }
-          sanitizeNode(node);
-        }
-      } else if (node.nodeType !== 3) {
-        parent.removeChild(node);
-      }
-      node = next;
-    }
-  }
-
-  function sanitizeDescriptionHTML(html) {
-    var template = document.createElement('template');
-    template.innerHTML = html;
-    sanitizeNode(template.content);
-    return template.innerHTML;
-  }
-
-  function render() {
-    var filtered = allEvents.filter(function (e) {
-      var matchesFilter = activeFilter === 'all' || e.source === activeFilter;
-      var matchesSearch = !searchTerm ||
-        e.title.toLowerCase().indexOf(searchTerm) !== -1 ||
-        e.description.toLowerCase().indexOf(searchTerm) !== -1 ||
-        e.location.toLowerCase().indexOf(searchTerm) !== -1;
-      return matchesFilter && matchesSearch;
-    });
-
-    contentEl.innerHTML = '';
-
-    if (allEvents.length === 0) {
-      contentEl.innerHTML = '<p class="baa-cal__status">Nothing on the calendar yet. Check back soon.</p>';
-      return;
-    }
-
-    if (filtered.length === 0) {
-      contentEl.innerHTML = '<p class="baa-cal__status">No events match your search.</p>';
-      return;
-    }
-
-    var currentMonthKey = '';
-    var listWrap = document.createElement('div');
-
-    filtered.forEach(function (e) {
-      var monthKey = e.start.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-      if (monthKey !== currentMonthKey) {
-        currentMonthKey = monthKey;
-        var monthHeading = document.createElement('h3');
-        monthHeading.className = 'baa-cal__month-heading';
-        monthHeading.textContent = monthKey;
-        listWrap.appendChild(monthHeading);
-      }
-
-      var row = document.createElement('div');
-      row.className = 'baa-cal__event';
-
-      var dateBlock = document.createElement('div');
-      dateBlock.className = 'baa-cal__event-date';
-      dateBlock.innerHTML =
-        '<span class="day">' + e.start.getDate() + '</span>' +
-        '<span class="weekday">' + e.start.toLocaleDateString('en-US', { weekday: 'short' }) + '</span>';
-
-      var body = document.createElement('div');
-      body.className = 'baa-cal__event-body';
-
-      var title = document.createElement('p');
-      title.className = 'baa-cal__event-title';
-      title.textContent = e.title;
-
-      var meta = document.createElement('div');
-      meta.className = 'baa-cal__event-meta';
-
-      var tag = document.createElement('span');
-      tag.className = 'baa-cal__tag baa-cal__tag--' + e.source;
-      tag.textContent = SOURCE_LABELS[e.source];
-      meta.appendChild(tag);
-
-      var timeText = document.createElement('span');
-      timeText.textContent = e.allDay
-        ? 'All day'
-        : e.start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-      meta.appendChild(timeText);
-
-      if (e.location) {
-        var loc = document.createElement('span');
-        loc.textContent = e.location;
-        meta.appendChild(loc);
-      }
-
-      body.appendChild(title);
-      body.appendChild(meta);
-
-      if (e.description) {
-        var desc = document.createElement('p');
-        desc.className = 'baa-cal__event-desc';
-        desc.innerHTML = sanitizeDescriptionHTML(e.description);
-        body.appendChild(desc);
-      }
-
-      row.appendChild(dateBlock);
-      row.appendChild(body);
-      listWrap.appendChild(row);
-    });
-
-    contentEl.appendChild(listWrap);
-  }
-
-  searchEl.addEventListener('input', function () {
-    searchTerm = searchEl.value.trim().toLowerCase();
-    render();
-  });
-
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      filterBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
-      btn.setAttribute('aria-pressed', 'true');
-      activeFilter = btn.getAttribute('data-filter');
-      render();
-    });
-  });
-
-  loadAll();
-})();
-</script>
-
-<!-- COMMITTEES -->
-<div class="committees-section">
-  <div class="section-label-alt">How We're Organized</div>
-  <h2 class="section-title">Four standing committees. One mission.</h2>
-  <div class="committees-list">
-    <div class="committee-row">
-      <div class="comm-name">Governance &amp; Bylaws</div>
-      <div class="comm-desc">Protects the structural integrity and legitimacy of the BAA. Oversees bylaws, policy, and organizational compliance.</div>
-      <a href="https://docs.google.com/document/d/10sQhBCTwPs0Qwzov01AcHfeJCk_JV_wK/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
+    <!-- ACTION CARDS -->
+    <div class="actions-section">
+      <div class="section-label">Get Involved</div>
+      <h2 class="section-title">Connect. Get Involved. Be Informed. Make an Impact.</h2>
+      <div class="action-grid">
+        <div class="action-card">
+          <div class="action-num">01</div>
+          <h3>Join or Update Your Profile</h3>
+          <p>Add yourself to the BAA directory or update your contact information to stay connected with the community.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="action-btn" target="_blank" rel="noopener">Join or Update Your Profile</a>
+        </div>
+        <div class="action-card">
+          <div class="action-num">02</div>
+          <h3>Serve on a Committee</h3>
+          <p>Help shape the work of the BAA by volunteering on one of our four standing committees. Your expertise matters.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScsJDi2Z_uQPb_hf_DWH128lplpstwqKlnwfs0Bxkn2MCTeDQ/viewform" class="action-btn" target="_blank" rel="noopener">Serve on a Committee</a>
+        </div>
+        <div class="action-card">
+          <div class="action-num">03</div>
+          <h3>Member Access</h3>
+          <p>Access member resources, meeting notes, and BAA materials reserved for alumni in the network.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8ss6e6pSmA1IvAkPTCJJ5epzHBNtyZBaH6bw0boxOB5vLnA/viewform" class="action-btn" target="_blank" rel="noopener">Member Access</a>
+        </div>
+        <div class="action-card">
+          <div class="action-num">04</div>
+          <h3>Read Perspectives</h3>
+          <p>A series exploring the strategies that shape the work of the BAA. Thought leadership from and for the community.</p>
+          <a href="/perspectives/" class="action-btn">Read Perspectives</a>
+        </div>
+      </div>
     </div>
-    <div class="committee-row">
-      <div class="comm-name">Finance &amp; Fund Development</div>
-      <div class="comm-desc">Oversees the BAA budget, financial reporting, and fund stewardship including the BAA endowment.</div>
-      <a href="https://docs.google.com/document/d/1B5kNiS2959wGnHLzYaH7rdKJfq6UujAB/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
-    </div>
-    <div class="committee-row">
-      <div class="comm-name">Programs &amp; Mentorship</div>
-      <div class="comm-desc">Leads student-facing initiatives and mentorship programming connecting alumni to current Denison students.</div>
-      <a href="https://docs.google.com/document/d/1l-b60xJB1lebcQv9SkB9cEgtSTWH2fsJ/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
-    </div>
-    <div class="committee-row">
-      <div class="comm-name">Communications &amp; Membership</div>
-      <div class="comm-desc">Manages newsletters, the member directory, website, and alumni outreach to keep the community connected.</div>
-      <a href="https://docs.google.com/document/d/1RLRjQeWyGpZ2SofJOyTkMsRr5OnGykd395glw3_CCVA/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
-    </div>
-  </div>
-</div>
 
-<!-- GET INVOLVED CTA -->
-<div class="involved-section">
-  <div class="involved-left">
-    <div class="inv-label">The BAA Needs You</div>
-    <h2 class="inv-title">The BAA works because alumni show up for each other and the communities they come from.</h2>
-    <p class="inv-body">Whether you're a recent graduate or an alumnus of decades standing, your participation strengthens the network, helps current students, creates positive change in our communities and builds the organizational capacity of Black alumni associations nationwide.</p>
-  </div>
-  <div class="involved-right">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="inv-btn inv-btn-primary" target="_blank" rel="noopener">Join or Update Your Profile</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScsJDi2Z_uQPb_hf_DWH128lplpstwqKlnwfs0Bxkn2MCTeDQ/viewform" class="inv-btn inv-btn-ghost" target="_blank" rel="noopener">Serve on a Committee</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8ss6e6pSmA1IvAkPTCJJ5epzHBNtyZBaH6bw0boxOB5vLnA/viewform" class="inv-btn inv-btn-ghost" target="_blank" rel="noopener">Member Access</a>
+    <!-- COMMITTEES -->
+    <div class="committees-section">
+      <div class="section-label-alt">How We're Organized</div>
+      <h2 class="section-title">Four standing committees. One mission.</h2>
+      <div class="committees-list">
+        <div class="committee-row">
+          <div class="comm-name">Governance &amp; Bylaws</div>
+          <div class="comm-desc">Protects the structural integrity and legitimacy of the BAA. Oversees bylaws, policy, and organizational compliance.</div>
+          <a href="https://docs.google.com/document/d/10sQhBCTwPs0Qwzov01AcHfeJCk_JV_wK/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
+        </div>
+        <div class="committee-row">
+          <div class="comm-name">Finance &amp; Fund Development</div>
+          <div class="comm-desc">Oversees the BAA budget, financial reporting, and fund stewardship including the BAA endowment.</div>
+          <a href="https://docs.google.com/document/d/1B5kNiS2959wGnHLzYaH7rdKJfq6UujAB/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
+        </div>
+        <div class="committee-row">
+          <div class="comm-name">Programs &amp; Mentorship</div>
+          <div class="comm-desc">Leads student-facing initiatives and mentorship programming connecting alumni to current Denison students.</div>
+          <a href="https://docs.google.com/document/d/1l-b60xJB1lebcQv9SkB9cEgtSTWH2fsJ/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
+        </div>
+        <div class="committee-row">
+          <div class="comm-name">Communications &amp; Membership</div>
+          <div class="comm-desc">Manages newsletters, the member directory, website, and alumni outreach to keep the community connected.</div>
+          <a href="https://docs.google.com/document/d/1RLRjQeWyGpZ2SofJOyTkMsRr5OnGykd395glw3_CCVA/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GET INVOLVED CTA -->
+    <div class="involved-section">
+      <div class="involved-left">
+        <div class="inv-label">The BAA Needs You</div>
+        <h2 class="inv-title">The BAA works because alumni show up for each other and the communities they come from.</h2>
+        <p class="inv-body">Whether you're a recent graduate or an alumnus of decades standing, your participation strengthens the network, helps current students, creates positive change in our communities and builds the organizational capacity of Black alumni associations nationwide.</p>
+      </div>
+      <div class="involved-right">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="inv-btn inv-btn-primary" target="_blank" rel="noopener">Join or Update Your Profile</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScsJDi2Z_uQPb_hf_DWH128lplpstwqKlnwfs0Bxkn2MCTeDQ/viewform" class="inv-btn inv-btn-ghost" target="_blank" rel="noopener">Serve on a Committee</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8ss6e6pSmA1IvAkPTCJJ5epzHBNtyZBaH6bw0boxOB5vLnA/viewform" class="inv-btn inv-btn-ghost" target="_blank" rel="noopener">Member Access</a>
+      </div>
+    </div>
+
   </div>
 </div>
