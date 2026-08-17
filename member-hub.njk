@@ -354,6 +354,20 @@ description: Get involved with the Black Alumni Association of Denison Universit
       var searchEl = document.getElementById('baaCalSearch');
       var filterBtns = document.querySelectorAll('.baa-cal__filter-btn');
 
+      // Google Calendar returns all-day events as a bare "YYYY-MM-DD" date
+      // (no time, no offset). new Date() parses date-only ISO strings as UTC
+      // midnight, which lands on the previous calendar day for any visitor
+      // west of UTC (all US timezones) — e.g. "2026-08-20" renders as the
+      // 19th. Parse all-day dates as local-timezone components instead so
+      // the calendar date matches what was actually entered.
+      function parseEventDate(dateStr, isAllDay) {
+        if (isAllDay) {
+          var parts = dateStr.split('-');
+          return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+        }
+        return new Date(dateStr);
+      }
+
       function fetchCalendar(cal) {
         var timeMin = new Date().toISOString();
         var url = 'https://www.googleapis.com/calendar/v3/calendars/' +
@@ -376,7 +390,7 @@ description: Get involved with the Black Alumni Association of Denison Universit
                 title: item.summary || '(Untitled event)',
                 description: item.description || '',
                 location: item.location || '',
-                start: startRaw ? new Date(startRaw) : null,
+                start: startRaw ? parseEventDate(startRaw, isAllDay) : null,
                 allDay: isAllDay,
                 source: cal.source
               };
