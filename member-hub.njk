@@ -228,6 +228,16 @@ description: Get involved with the Black Alumni Association of Denison Universit
       margin: 0;
     }
 
+    .baa-cal__event-desc a {
+      color: var(--crimson);
+      text-decoration: underline;
+    }
+
+    .baa-cal__event-desc a:hover,
+    .baa-cal__event-desc a:focus-visible {
+      color: var(--gold);
+    }
+
     @media (max-width: 480px) {
       .baa-cal { padding: 1.25rem; }
       .baa-cal__event-date { flex-basis: 50px; }
@@ -322,6 +332,54 @@ description: Get involved with the Black Alumni Association of Denison Universit
       });
   }
 
+  // Google Calendar's rich-text description editor stores formatting (links,
+  // bold, line breaks) as literal HTML in the API response. Render it as HTML
+  // so links work, but only after stripping it down to a safe allowlist —
+  // the description field is editable by anyone with edit access to the
+  // calendar, not just this page's maintainer.
+  var ALLOWED_TAGS = { A: 1, B: 1, STRONG: 1, I: 1, EM: 1, U: 1, BR: 1, P: 1, SPAN: 1, DIV: 1, UL: 1, OL: 1, LI: 1 };
+  var ALLOWED_ATTRS = { A: ['href'] };
+
+  function sanitizeNode(parent) {
+    var node = parent.firstChild;
+    while (node) {
+      var next = node.nextSibling;
+      if (node.nodeType === 1) {
+        var tag = node.tagName;
+        if (!ALLOWED_TAGS[tag]) {
+          sanitizeNode(node);
+          while (node.firstChild) parent.insertBefore(node.firstChild, node);
+          parent.removeChild(node);
+        } else {
+          var allowedAttrs = ALLOWED_ATTRS[tag] || [];
+          for (var i = node.attributes.length - 1; i >= 0; i--) {
+            var attrName = node.attributes[i].name;
+            if (allowedAttrs.indexOf(attrName) === -1) node.removeAttribute(attrName);
+          }
+          if (tag === 'A') {
+            var href = node.getAttribute('href') || '';
+            if (!/^https?:\/\//i.test(href)) {
+              node.removeAttribute('href');
+            }
+            node.setAttribute('target', '_blank');
+            node.setAttribute('rel', 'noopener noreferrer');
+          }
+          sanitizeNode(node);
+        }
+      } else if (node.nodeType !== 3) {
+        parent.removeChild(node);
+      }
+      node = next;
+    }
+  }
+
+  function sanitizeDescriptionHTML(html) {
+    var template = document.createElement('template');
+    template.innerHTML = html;
+    sanitizeNode(template.content);
+    return template.innerHTML;
+  }
+
   function render() {
     var filtered = allEvents.filter(function (e) {
       var matchesFilter = activeFilter === 'all' || e.source === activeFilter;
@@ -399,7 +457,7 @@ description: Get involved with the Black Alumni Association of Denison Universit
       if (e.description) {
         var desc = document.createElement('p');
         desc.className = 'baa-cal__event-desc';
-        desc.textContent = e.description;
+        desc.innerHTML = sanitizeDescriptionHTML(e.description);
         body.appendChild(desc);
       }
 
