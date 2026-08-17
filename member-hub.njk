@@ -71,6 +71,392 @@ description: Get involved with the Black Alumni Association of Denison Universit
   </div>
 </div>
 
+<!-- CALENDAR -->
+<section class="baa-cal" aria-label="BAA Calendar">
+  <style>
+    .baa-cal {
+      --crimson: #9B2335;
+      --green: #078D70;
+      --charcoal: #2C2C2C;
+      --cream: #F9F5EE;
+      --gold: #C9A84C;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      border: 1px solid rgba(44,44,44,0.1);
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+
+    .baa-cal * { box-sizing: border-box; }
+
+    .baa-cal__heading {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 2rem;
+      color: var(--crimson);
+      margin: 0 0 0.25rem;
+    }
+
+    .baa-cal__subheading {
+      margin: 0 0 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(44,44,44,0.75);
+    }
+
+    .baa-cal__controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .baa-cal__search {
+      flex: 1 1 220px;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid rgba(44,44,44,0.25);
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fff;
+      color: var(--charcoal);
+    }
+
+    .baa-cal__search:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 1px;
+    }
+
+    .baa-cal__filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .baa-cal__filter-btn {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(44,44,44,0.25);
+      background: #fff;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .baa-cal__filter-btn:hover {
+      border-color: var(--crimson);
+    }
+
+    .baa-cal__filter-btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .baa-cal__filter-btn[aria-pressed="true"] {
+      background: var(--crimson);
+      border-color: var(--crimson);
+      color: #fff;
+    }
+
+    .baa-cal__status {
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.95rem;
+      color: rgba(44,44,44,0.7);
+    }
+
+    .baa-cal__month-heading {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 0.35rem;
+      margin: 1.75rem 0 1rem;
+    }
+
+    .baa-cal__month-heading:first-of-type {
+      margin-top: 0;
+    }
+
+    .baa-cal__event {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(44,44,44,0.08);
+    }
+
+    .baa-cal__event:last-child {
+      border-bottom: none;
+    }
+
+    .baa-cal__event-date {
+      flex: 0 0 64px;
+      text-align: center;
+      font-family: 'EB Garamond', Georgia, serif;
+      color: var(--crimson);
+      line-height: 1.1;
+    }
+
+    .baa-cal__event-date .day {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .baa-cal__event-date .weekday {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(44,44,44,0.6);
+      font-family: 'Open Sans', Arial, sans-serif;
+    }
+
+    .baa-cal__event-body { flex: 1; }
+
+    .baa-cal__event-title {
+      font-weight: 700;
+      margin: 0 0 0.2rem;
+      color: var(--charcoal);
+    }
+
+    .baa-cal__event-meta {
+      font-size: 0.85rem;
+      color: rgba(44,44,44,0.7);
+      margin: 0 0 0.3rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .baa-cal__tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      color: #fff;
+    }
+
+    .baa-cal__tag--events { background: var(--green); }
+    .baa-cal__tag--committee { background: var(--gold); color: var(--charcoal); }
+
+    .baa-cal__event-desc {
+      font-size: 0.88rem;
+      color: rgba(44,44,44,0.85);
+      margin: 0;
+    }
+
+    @media (max-width: 480px) {
+      .baa-cal { padding: 1.25rem; }
+      .baa-cal__event-date { flex-basis: 50px; }
+    }
+  </style>
+
+  <h2 class="baa-cal__heading">What's Coming Up</h2>
+  <p class="baa-cal__subheading">Search or filter to find what you're looking for.</p>
+
+  <div class="baa-cal__controls">
+    <input
+      type="text"
+      class="baa-cal__search"
+      id="baaCalSearch"
+      placeholder="Search events..."
+      aria-label="Search calendar events"
+    />
+    <div class="baa-cal__filters" role="group" aria-label="Filter by calendar">
+      <button type="button" class="baa-cal__filter-btn" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="baa-cal__filter-btn" data-filter="events" aria-pressed="false">Programs & Events</button>
+      <button type="button" class="baa-cal__filter-btn" data-filter="committee" aria-pressed="false">Committee</button>
+    </div>
+  </div>
+
+  <div id="baaCalContent">
+    <p class="baa-cal__status" id="baaCalStatus">Loading the calendar...</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  // ---- CONFIG: calendar IDs and API key ----
+  var API_KEY = 'AIzaSyDTeNuoU4V1XRA-XRFALKq7HQmn0wxIRw8';
+  var CALENDARS = [
+    { id: '12a51878f8c1e7eb5adc155dbfc2efad5393c5816c3941e8421b31d43c22e18f@group.calendar.google.com', source: 'events' },
+    { id: '22c4724794434a71948192886e1264c6f2e860f7e68fc239cea4cb3d0fea96e8@group.calendar.google.com', source: 'committee' }
+  ];
+  var SOURCE_LABELS = { events: 'Programs & Events', committee: 'Committee' };
+  var MAX_RESULTS_PER_CALENDAR = 50;
+  // -------------------------------------------
+
+  var allEvents = [];
+  var activeFilter = 'all';
+  var searchTerm = '';
+
+  var statusEl = document.getElementById('baaCalStatus');
+  var contentEl = document.getElementById('baaCalContent');
+  var searchEl = document.getElementById('baaCalSearch');
+  var filterBtns = document.querySelectorAll('.baa-cal__filter-btn');
+
+  function fetchCalendar(cal) {
+    var timeMin = new Date().toISOString();
+    var url = 'https://www.googleapis.com/calendar/v3/calendars/' +
+      encodeURIComponent(cal.id) +
+      '/events?key=' + API_KEY +
+      '&singleEvents=true&orderBy=startTime&timeMin=' + encodeURIComponent(timeMin) +
+      '&maxResults=' + MAX_RESULTS_PER_CALENDAR;
+
+    return fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error('Calendar fetch failed: ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        return (data.items || []).map(function (item) {
+          var startRaw = item.start && (item.start.dateTime || item.start.date);
+          var isAllDay = !!(item.start && item.start.date && !item.start.dateTime);
+          return {
+            id: item.id,
+            title: item.summary || '(Untitled event)',
+            description: item.description || '',
+            location: item.location || '',
+            start: startRaw ? new Date(startRaw) : null,
+            allDay: isAllDay,
+            source: cal.source
+          };
+        });
+      });
+  }
+
+  function loadAll() {
+    Promise.all(CALENDARS.map(fetchCalendar))
+      .then(function (results) {
+        allEvents = results.flat().filter(function (e) { return e.start; });
+        allEvents.sort(function (a, b) { return a.start - b.start; });
+        render();
+      })
+      .catch(function (err) {
+        console.error(err);
+        statusEl.textContent = "The calendar couldn't be loaded right now. Try refreshing, or check back shortly.";
+        statusEl.style.display = 'block';
+      });
+  }
+
+  function render() {
+    var filtered = allEvents.filter(function (e) {
+      var matchesFilter = activeFilter === 'all' || e.source === activeFilter;
+      var matchesSearch = !searchTerm ||
+        e.title.toLowerCase().indexOf(searchTerm) !== -1 ||
+        e.description.toLowerCase().indexOf(searchTerm) !== -1 ||
+        e.location.toLowerCase().indexOf(searchTerm) !== -1;
+      return matchesFilter && matchesSearch;
+    });
+
+    contentEl.innerHTML = '';
+
+    if (allEvents.length === 0) {
+      contentEl.innerHTML = '<p class="baa-cal__status">Nothing on the calendar yet. Check back soon.</p>';
+      return;
+    }
+
+    if (filtered.length === 0) {
+      contentEl.innerHTML = '<p class="baa-cal__status">No events match your search.</p>';
+      return;
+    }
+
+    var currentMonthKey = '';
+    var listWrap = document.createElement('div');
+
+    filtered.forEach(function (e) {
+      var monthKey = e.start.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      if (monthKey !== currentMonthKey) {
+        currentMonthKey = monthKey;
+        var monthHeading = document.createElement('h3');
+        monthHeading.className = 'baa-cal__month-heading';
+        monthHeading.textContent = monthKey;
+        listWrap.appendChild(monthHeading);
+      }
+
+      var row = document.createElement('div');
+      row.className = 'baa-cal__event';
+
+      var dateBlock = document.createElement('div');
+      dateBlock.className = 'baa-cal__event-date';
+      dateBlock.innerHTML =
+        '<span class="day">' + e.start.getDate() + '</span>' +
+        '<span class="weekday">' + e.start.toLocaleDateString('en-US', { weekday: 'short' }) + '</span>';
+
+      var body = document.createElement('div');
+      body.className = 'baa-cal__event-body';
+
+      var title = document.createElement('p');
+      title.className = 'baa-cal__event-title';
+      title.textContent = e.title;
+
+      var meta = document.createElement('div');
+      meta.className = 'baa-cal__event-meta';
+
+      var tag = document.createElement('span');
+      tag.className = 'baa-cal__tag baa-cal__tag--' + e.source;
+      tag.textContent = SOURCE_LABELS[e.source];
+      meta.appendChild(tag);
+
+      var timeText = document.createElement('span');
+      timeText.textContent = e.allDay
+        ? 'All day'
+        : e.start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      meta.appendChild(timeText);
+
+      if (e.location) {
+        var loc = document.createElement('span');
+        loc.textContent = e.location;
+        meta.appendChild(loc);
+      }
+
+      body.appendChild(title);
+      body.appendChild(meta);
+
+      if (e.description) {
+        var desc = document.createElement('p');
+        desc.className = 'baa-cal__event-desc';
+        desc.textContent = e.description;
+        body.appendChild(desc);
+      }
+
+      row.appendChild(dateBlock);
+      row.appendChild(body);
+      listWrap.appendChild(row);
+    });
+
+    contentEl.appendChild(listWrap);
+  }
+
+  searchEl.addEventListener('input', function () {
+    searchTerm = searchEl.value.trim().toLowerCase();
+    render();
+  });
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+      activeFilter = btn.getAttribute('data-filter');
+      render();
+    });
+  });
+
+  loadAll();
+})();
+</script>
+
 <!-- GET INVOLVED CTA -->
 <div class="involved-section">
   <div class="involved-left">
