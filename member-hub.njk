@@ -11,7 +11,27 @@ description: Get involved with the Black Alumni Association of Denison Universit
   <p class="page-subtitle">Your gateway to the BAA network</p>
 </section>
 
-<!-- TWO-COLUMN LAYOUT: calendar sidebar (left) + page content (right) -->
+<!-- LAYOUT: calendar sidebar (left, persists alongside the whole page) +
+     full-bleed page sections (right) that still stretch edge-to-edge like
+     the Hero and footer.
+
+     Flexbox (not grid) on purpose: an earlier version used CSS Grid with
+     the sticky sidebar spanning every row so it could sit beside the whole
+     page. Grid auto-sizes rows to fit their tallest occupant, and a
+     multi-row-spanning item's height gets folded into that sizing — as the
+     calendar grew, Grid inflated the (mostly-empty) Action Cards row to
+     match the sidebar's full height, opening a growing blank gap before
+     Committees. Flex's cross-axis sizing doesn't have that failure mode:
+     the main column's height is just the sum of its own children, entirely
+     independent of the sidebar's height.
+
+     Each section inside .member-hub-main then breaks back out to full
+     viewport width via negative margins (fixed px, not vw — see below) so
+     its background still spans edge-to-edge like Hero/footer. The sidebar
+     is `position: sticky`, a positioned element, which — per normal CSS
+     painting order — always paints above this plain (position: static)
+     content wherever they geometrically overlap, so the sidebar is never
+     covered by a section painting "in front of" it. -->
 <style>
   .member-hub-layout {
     display: flex;
@@ -31,12 +51,15 @@ description: Get involved with the Black Alumni Association of Denison Universit
     min-width: 0;
   }
 
-  /* The layout's own 60px gutter replaces each section's left/right padding
-     so section backgrounds fill the main column edge-to-edge without a
-     double gutter. */
   .member-hub-main > div {
-    padding-left: 0;
-    padding-right: 0;
+    /* Break out to viewport edges: .member-hub-main's box starts 420px in
+       from the left (60 layout padding + 320 sidebar + 40 gap) and ends
+       60px in from the right (the layout's own right padding) — both fixed
+       pixel values, so this doesn't need viewport-width hacks. */
+    margin-left: -420px;
+    margin-right: -60px;
+    padding-left: 420px;
+    padding-right: 60px;
   }
 
   @media (max-width: 900px) {
@@ -49,6 +72,12 @@ description: Get involved with the Black Alumni Association of Denison Universit
       flex-basis: auto;
       width: 100%;
       position: static;
+    }
+    .member-hub-main > div {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 
