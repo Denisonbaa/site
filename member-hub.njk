@@ -11,27 +11,28 @@ description: Get involved with the Black Alumni Association of Denison Universit
   <p class="page-subtitle">Your gateway to the BAA network</p>
 </section>
 
-<!-- LAYOUT: calendar sidebar (left, persists alongside the whole page) +
-     full-bleed page sections (right) that still stretch edge-to-edge like
-     the Hero and footer.
+<!-- LAYOUT: calendar sidebar (left) + main page content (right), in a
+     contained column (not full-bleed) — chosen after two rejected attempts
+     at making the sidebar coexist with edge-to-edge section backgrounds:
 
-     Flexbox (not grid) on purpose: an earlier version used CSS Grid with
-     the sticky sidebar spanning every row so it could sit beside the whole
-     page. Grid auto-sizes rows to fit their tallest occupant, and a
-     multi-row-spanning item's height gets folded into that sizing — as the
-     calendar grew, Grid inflated the (mostly-empty) Action Cards row to
-     match the sidebar's full height, opening a growing blank gap before
-     Committees. Flex's cross-axis sizing doesn't have that failure mode:
-     the main column's height is just the sum of its own children, entirely
-     independent of the sidebar's height.
+     1. CSS Grid with the sticky sidebar spanning every row. Grid auto-sizes
+        rows to fit their tallest occupant, and folding a tall spanning
+        sidebar into that sizing inflated the (mostly-empty) Action Cards
+        row to match the sidebar's full height, opening a growing blank gap
+        before Committees.
+     2. Flexbox with each main-column section "breaking out" to full
+        viewport width via negative margins. This avoided the Grid bug and
+        never hid or broke any content, but a sufficiently tall calendar
+        (long event descriptions) visibly painted over the dark "Get
+        Involved" CTA section, since the sticky (positioned) sidebar always
+        paints above static full-bleed content wherever they overlap.
 
-     Each section inside .member-hub-main then breaks back out to full
-     viewport width via negative margins (fixed px, not vw — see below) so
-     its background still spans edge-to-edge like Hero/footer. The sidebar
-     is `position: sticky`, a positioned element, which — per normal CSS
-     painting order — always paints above this plain (position: static)
-     content wherever they geometrically overlap, so the sidebar is never
-     covered by a section painting "in front of" it. -->
+     Both were fighting the actual root cause: the calendar had no height
+     limit. The fix is a capped, internally-scrolling calendar card (see
+     .baa-cal below) plus this contained column, which sizes the main
+     column by its own content only — independent of the sidebar's height,
+     with zero chance of the two ever overlapping regardless of how tall
+     the calendar gets. -->
 <style>
   .member-hub-layout {
     display: flex;
@@ -52,14 +53,8 @@ description: Get involved with the Black Alumni Association of Denison Universit
   }
 
   .member-hub-main > div {
-    /* Break out to viewport edges: .member-hub-main's box starts 420px in
-       from the left (60 layout padding + 320 sidebar + 40 gap) and ends
-       60px in from the right (the layout's own right padding) — both fixed
-       pixel values, so this doesn't need viewport-width hacks. */
-    margin-left: -420px;
-    margin-right: -60px;
-    padding-left: 420px;
-    padding-right: 60px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   @media (max-width: 900px) {
@@ -72,12 +67,6 @@ description: Get involved with the Black Alumni Association of Denison Universit
       flex-basis: auto;
       width: 100%;
       position: static;
-    }
-    .member-hub-main > div {
-      margin-left: 0;
-      margin-right: 0;
-      padding-left: 0;
-      padding-right: 0;
     }
   }
 
@@ -105,6 +94,15 @@ description: Get involved with the Black Alumni Association of Denison Universit
           border-radius: 8px;
           padding: 1.5rem;
           width: 100%;
+          /* Cap the card's height so it can never grow past the page,
+             regardless of how many events or how long their descriptions
+             get — 96px matches the sidebar's sticky top offset, 40px is
+             bottom breathing room, 760px is a hard ceiling on tall
+             viewports. Only #baaCalContent scrolls internally (below). */
+          display: flex;
+          flex-direction: column;
+          max-height: min(calc(100vh - 96px - 40px), 760px);
+          overflow: hidden;
         }
 
         .baa-cal * { box-sizing: border-box; }
@@ -114,12 +112,14 @@ description: Get involved with the Black Alumni Association of Denison Universit
           font-size: 1.6rem;
           color: var(--crimson);
           margin: 0 0 0.25rem;
+          flex: 0 0 auto;
         }
 
         .baa-cal__subheading {
           margin: 0 0 1.25rem;
           font-size: 0.85rem;
           color: rgba(44,44,44,0.75);
+          flex: 0 0 auto;
         }
 
         .baa-cal__controls {
@@ -127,6 +127,7 @@ description: Get involved with the Black Alumni Association of Denison Universit
           flex-direction: column;
           gap: 0.65rem;
           margin-bottom: 1.5rem;
+          flex: 0 0 auto;
         }
 
         .baa-cal__search {
@@ -292,6 +293,11 @@ description: Get involved with the Black Alumni Association of Denison Universit
           margin-top: 1.25rem;
           padding-top: 1rem;
           border-top: 1px solid rgba(44,44,44,0.1);
+          /* Stays reachable without scrolling past a long description,
+             since it's the last thing appended into #baaCalContent. */
+          position: sticky;
+          bottom: 0;
+          background: var(--cream);
         }
 
         .baa-cal__page-btn {
@@ -330,6 +336,16 @@ description: Get involved with the Black Alumni Association of Denison Universit
           font-size: 0.72rem;
           color: rgba(44,44,44,0.6);
           white-space: nowrap;
+        }
+
+        #baaCalContent {
+          flex: 1 1 auto;
+          min-height: 0; /* required: a flex item's default min-height:auto
+                             would let it grow to fit content and silently
+                             defeat overflow-y:auto below */
+          overflow-y: auto;
+          padding-right: 0.5rem;
+          margin-right: -0.5rem;
         }
 
         @media (max-width: 480px) {
