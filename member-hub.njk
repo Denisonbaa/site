@@ -11,71 +11,74 @@ description: Get involved with the Black Alumni Association of Denison Universit
   <p class="page-subtitle">Your gateway to the BAA network</p>
 </section>
 
-<!-- LAYOUT: calendar sidebar (left) + main page content (right), in a
-     contained column (not full-bleed) — chosen after two rejected attempts
-     at making the sidebar coexist with edge-to-edge section backgrounds:
+<!-- LAYOUT: calendar sidebar (left) beside Action Cards only, capped to
+     exactly Action Cards' own height. Committees and Get Involved are
+     plain, unwrapped full-bleed sections below — same edge-to-edge
+     treatment as the Hero/footer, untouched by any of this.
 
-     1. CSS Grid with the sticky sidebar spanning every row. Grid auto-sizes
-        rows to fit their tallest occupant, and folding a tall spanning
-        sidebar into that sizing inflated the (mostly-empty) Action Cards
-        row to match the sidebar's full height, opening a growing blank gap
-        before Committees.
-     2. Flexbox with each main-column section "breaking out" to full
-        viewport width via negative margins. This avoided the Grid bug and
-        never hid or broke any content, but a sufficiently tall calendar
-        (long event descriptions) visibly painted over the dark "Get
-        Involved" CTA section, since the sticky (positioned) sidebar always
+     Three approaches were tried and rejected before this one:
+     1. CSS Grid with the sticky sidebar spanning every row (so it could
+        run beside the whole page). Grid auto-sizes rows to fit their
+        tallest occupant, and folding a tall spanning sidebar into that
+        sizing inflated the (mostly-empty) Action Cards row to match the
+        sidebar's full height, opening a growing blank gap before
+        Committees.
+     2. Flexbox with the sidebar beside all of Action Cards + Committees +
+        Get Involved, each "breaking out" to full viewport width via
+        negative margins. Never hid or broke content, but a sufficiently
+        tall calendar (long event descriptions) visibly painted over the
+        dark Get Involved CTA, since the sticky (positioned) sidebar always
         paints above static full-bleed content wherever they overlap.
+     3. The same flex sidebar, but with Committees/Get Involved reverted to
+        a contained (non-full-bleed) column instead of full-bleed — safe,
+        but lost the edge-to-edge look for those sections entirely.
 
-     Both were fighting the actual root cause: the calendar had no height
-     limit. The fix is a capped, internally-scrolling calendar card (see
-     .baa-cal below) plus this contained column, which sizes the main
-     column by its own content only — independent of the sidebar's height,
-     with zero chance of the two ever overlapping regardless of how tall
-     the calendar gets. -->
+     This version sidesteps the whole "how tall can the sidebar safely get"
+     question: the sidebar's height is exactly Action Cards' height, not a
+     guess or a viewport-relative formula, so it structurally cannot reach
+     Committees or Get Involved regardless of how much calendar content
+     there is. Mechanism: .member-hub-top-row is `position: relative` with
+     only ONE normal-flow child (.actions-section) at desktop widths — the
+     sidebar is `position: absolute; height: 100%`, which resolves against
+     the row's height *after* that height has already been determined by
+     Action Cards alone, since an absolutely positioned element doesn't
+     contribute to its container's own size the way a flex/grid item would.
+     Any calendar content taller than that fits fixed height scrolls
+     internally via #baaCalContent's overflow-y (unchanged from before). -->
 <style>
-  .member-hub-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 0 60px;
+  .member-hub-top-row {
+    position: relative;
   }
 
-  .member-hub-sidebar {
-    flex: 0 0 320px;
-    position: sticky;
-    top: 96px;
-  }
-
-  .member-hub-main {
-    flex: 1 1 0%;
-    min-width: 0;
-  }
-
-  .member-hub-main > div {
-    padding-left: 0;
-    padding-right: 0;
+  @media (min-width: 901px) {
+    .member-hub-sidebar {
+      position: absolute;
+      left: 60px;
+      top: 0;
+      width: 320px;
+      height: 100%;
+    }
+    .member-hub-top-row > .actions-section {
+      padding-left: 420px; /* 60 (site gutter) + 320 (sidebar) + 40 (gap) */
+    }
   }
 
   @media (max-width: 900px) {
-    .member-hub-layout {
-      flex-direction: column;
-      padding: 0 24px;
-      gap: 32px;
-    }
     .member-hub-sidebar {
-      flex-basis: auto;
-      width: 100%;
-      position: static;
+      display: block;
+      width: auto;
+      margin: 24px 24px 32px;
     }
   }
 
   @media (max-width: 600px) {
-    .member-hub-layout { padding: 0 16px; }
+    .member-hub-sidebar {
+      margin: 16px 16px 24px;
+    }
   }
 </style>
 
-<div class="member-hub-layout">
+<div class="member-hub-top-row">
 
   <!-- CALENDAR SIDEBAR -->
   <aside class="member-hub-sidebar" aria-label="BAA Calendar">
@@ -94,15 +97,27 @@ description: Get involved with the Black Alumni Association of Denison Universit
           border-radius: 8px;
           padding: 1.5rem;
           width: 100%;
-          /* Cap the card's height so it can never grow past the page,
-             regardless of how many events or how long their descriptions
-             get — 96px matches the sidebar's sticky top offset, 40px is
-             bottom breathing room, 760px is a hard ceiling on tall
-             viewports. Only #baaCalContent scrolls internally (below). */
           display: flex;
           flex-direction: column;
-          max-height: min(calc(100vh - 96px - 40px), 760px);
           overflow: hidden;
+          /* Mobile/stacked fallback: the sidebar isn't positioned beside
+             Action Cards there (see .member-hub-sidebar's media queries
+             above), so there's no sibling height to match — cap to a
+             reasonable viewport-relative height instead. Overridden below
+             at desktop widths, where it's sized to exactly match Action
+             Cards instead. */
+          max-height: min(calc(100vh - 80px), 640px);
+        }
+
+        @media (min-width: 901px) {
+          .baa-cal {
+            /* Exactly matches Action Cards' own height — see
+               .member-hub-sidebar's `position: absolute; height: 100%`
+               above. Only #baaCalContent scrolls internally (below) once
+               content exceeds that height. */
+            height: 100%;
+            max-height: none;
+          }
         }
 
         .baa-cal * { box-sizing: border-box; }
@@ -658,11 +673,8 @@ description: Get involved with the Black Alumni Association of Denison Universit
     </script>
   </aside>
 
-  <!-- MAIN CONTENT -->
-  <div class="member-hub-main">
-
-    <!-- ACTION CARDS -->
-    <div class="actions-section">
+  <!-- ACTION CARDS -->
+  <div class="actions-section">
       <div class="section-label">Get Involved</div>
       <h2 class="section-title">Connect. Get Involved. Be Informed. Make an Impact.</h2>
       <div class="action-grid">
@@ -693,47 +705,46 @@ description: Get involved with the Black Alumni Association of Denison Universit
       </div>
     </div>
 
-    <!-- COMMITTEES -->
-    <div class="committees-section">
-      <div class="section-label-alt">How We're Organized</div>
-      <h2 class="section-title">Four standing committees. One mission.</h2>
-      <div class="committees-list">
-        <div class="committee-row">
-          <div class="comm-name">Governance &amp; Bylaws</div>
-          <div class="comm-desc">Protects the structural integrity and legitimacy of the BAA. Oversees bylaws, policy, and organizational compliance.</div>
-          <a href="https://docs.google.com/document/d/10sQhBCTwPs0Qwzov01AcHfeJCk_JV_wK/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
-        </div>
-        <div class="committee-row">
-          <div class="comm-name">Finance &amp; Fund Development</div>
-          <div class="comm-desc">Oversees the BAA budget, financial reporting, and fund stewardship including the BAA endowment.</div>
-          <a href="https://docs.google.com/document/d/1B5kNiS2959wGnHLzYaH7rdKJfq6UujAB/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
-        </div>
-        <div class="committee-row">
-          <div class="comm-name">Programs &amp; Mentorship</div>
-          <div class="comm-desc">Leads student-facing initiatives and mentorship programming connecting alumni to current Denison students.</div>
-          <a href="https://docs.google.com/document/d/1l-b60xJB1lebcQv9SkB9cEgtSTWH2fsJ/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
-        </div>
-        <div class="committee-row">
-          <div class="comm-name">Communications &amp; Membership</div>
-          <div class="comm-desc">Manages newsletters, the member directory, website, and alumni outreach to keep the community connected.</div>
-          <a href="https://docs.google.com/document/d/1RLRjQeWyGpZ2SofJOyTkMsRr5OnGykd395glw3_CCVA/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
-        </div>
-      </div>
-    </div>
+</div>
 
-    <!-- GET INVOLVED CTA -->
-    <div class="involved-section">
-      <div class="involved-left">
-        <div class="inv-label">The BAA Needs You</div>
-        <h2 class="inv-title">The BAA works because alumni show up for each other and the communities they come from.</h2>
-        <p class="inv-body">Whether you're a recent graduate or an alumnus of decades standing, your participation strengthens the network, helps current students, creates positive change in our communities and builds the organizational capacity of Black alumni associations nationwide.</p>
-      </div>
-      <div class="involved-right">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="inv-btn inv-btn-primary" target="_blank" rel="noopener">Join or Update Your Profile</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScsJDi2Z_uQPb_hf_DWH128lplpstwqKlnwfs0Bxkn2MCTeDQ/viewform" class="inv-btn inv-btn-ghost" target="_blank" rel="noopener">Serve on a Committee</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8ss6e6pSmA1IvAkPTCJJ5epzHBNtyZBaH6bw0boxOB5vLnA/viewform" class="inv-btn inv-btn-ghost" target="_blank" rel="noopener">Member Access</a>
-      </div>
+<!-- COMMITTEES -->
+<div class="committees-section">
+  <div class="section-label-alt">How We're Organized</div>
+  <h2 class="section-title">Four standing committees. One mission.</h2>
+  <div class="committees-list">
+    <div class="committee-row">
+      <div class="comm-name">Governance &amp; Bylaws</div>
+      <div class="comm-desc">Protects the structural integrity and legitimacy of the BAA. Oversees bylaws, policy, and organizational compliance.</div>
+      <a href="https://docs.google.com/document/d/10sQhBCTwPs0Qwzov01AcHfeJCk_JV_wK/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
     </div>
+    <div class="committee-row">
+      <div class="comm-name">Finance &amp; Fund Development</div>
+      <div class="comm-desc">Oversees the BAA budget, financial reporting, and fund stewardship including the BAA endowment.</div>
+      <a href="https://docs.google.com/document/d/1B5kNiS2959wGnHLzYaH7rdKJfq6UujAB/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
+    </div>
+    <div class="committee-row">
+      <div class="comm-name">Programs &amp; Mentorship</div>
+      <div class="comm-desc">Leads student-facing initiatives and mentorship programming connecting alumni to current Denison students.</div>
+      <a href="https://docs.google.com/document/d/1l-b60xJB1lebcQv9SkB9cEgtSTWH2fsJ/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
+    </div>
+    <div class="committee-row">
+      <div class="comm-name">Communications &amp; Membership</div>
+      <div class="comm-desc">Manages newsletters, the member directory, website, and alumni outreach to keep the community connected.</div>
+      <a href="https://docs.google.com/document/d/1RLRjQeWyGpZ2SofJOyTkMsRr5OnGykd395glw3_CCVA/edit" class="comm-link" target="_blank" rel="noopener">View Charter →</a>
+    </div>
+  </div>
+</div>
 
+<!-- GET INVOLVED CTA -->
+<div class="involved-section">
+  <div class="involved-left">
+    <div class="inv-label">The BAA Needs You</div>
+    <h2 class="inv-title">The BAA works because alumni show up for each other and the communities they come from.</h2>
+    <p class="inv-body">Whether you're a recent graduate or an alumnus of decades standing, your participation strengthens the network, helps current students, creates positive change in our communities and builds the organizational capacity of Black alumni associations nationwide.</p>
+  </div>
+  <div class="involved-right">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvWObPNnDwOg__hSxTnZeSM4yJpYaeo4mPXM9plH9CUAxhKg/viewform" class="inv-btn inv-btn-primary" target="_blank" rel="noopener">Join or Update Your Profile</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScsJDi2Z_uQPb_hf_DWH128lplpstwqKlnwfs0Bxkn2MCTeDQ/viewform" class="inv-btn inv-btn-ghost" target="_blank" rel="noopener">Serve on a Committee</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8ss6e6pSmA1IvAkPTCJJ5epzHBNtyZBaH6bw0boxOB5vLnA/viewform" class="inv-btn inv-btn-ghost" target="_blank" rel="noopener">Member Access</a>
   </div>
 </div>
