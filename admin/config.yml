@@ -205,6 +205,21 @@ collections:
           - { label: "CTA Button Text (optional)", name: "countdownCtaText", widget: "string", required: false }
           - { label: "CTA Button Link (optional)", name: "countdownCtaLink", widget: "string", required: false }
 
+      - label: "Endowment Campaign Page (TEMPORARY — remove after campaign closes, target Sept 26 / Nov 8 latest)"
+        name: "support"
+        file: "support.njk"
+        fields:
+          - { label: "SEO Title", name: "title", widget: "string", required: false }
+          - { label: "SEO Description", name: "description", widget: "text", required: false }
+          - { label: "Headline (\"The ask\")", name: "askHeadline", widget: "string", required: false }
+          - { label: "Ask Statement (\"The ask\")", name: "askBody", widget: "text", required: false, hint: "Mentions the Sept 26 deadline directly — update the date here if it changes." }
+          - { label: "Story", name: "storyBody", widget: "markdown", required: false }
+          - { label: "What Your Gift Does", name: "giftFundsBody", widget: "text", required: false, hint: "Also mentions the Sept 26 deadline directly." }
+          - { label: "FreeFunder Campaign Link", name: "freefunderLink", widget: "string", required: false, hint: "Placeholder until the live FreeFunder URL is sent — replace [FREEFUNDER LINK] with the real link before launch." }
+          - { label: "Where Things Stand", name: "whereThingsStandBody", widget: "text", required: false }
+          - { label: "How This Is Handled (tax/EIN disclosure)", name: "howHandledBody", widget: "text", required: false, hint: "Legal/tax language — get sign-off before editing." }
+          - { label: "Who's Behind This (board names)", name: "whosBehindBody", widget: "text", required: false }
+
       - label: "About Page"
         name: "about"
         file: "about.njk"

@@ -35,6 +35,12 @@
   </div>
   <ul>
     <li><a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a></li>
+    <!-- TEMPORARY NAV ITEM — endowment legal-fund campaign. Remove this <li>
+         once the campaign closes: target Sept 26, 2026, or Nov 8, 2026 at
+         the latest if it needs to stay up through Big Red Weekend. Aaron
+         will confirm the exact removal date. Page lives at /support/
+         (support.njk) — delete that file too when this comes down. -->
+    <li><a href="/support/" {% if page.url == "/support/" %}class="active"{% endif %}>Give Now</a></li>
     <li><a href="/about/" {% if page.url == "/about/" %}class="active"{% endif %}>About</a></li>
     <li><a href="/perspectives/" {% if page.url == "/perspectives/" or "/perspectives-" in page.url %}class="active"{% endif %}>Perspectives</a></li>
     <li><a href="/newsletter/" {% if page.url == "/newsletter/" or "/newsletter/" in page.url %}class="active"{% endif %}>Newsletter</a></li>
