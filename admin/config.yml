@@ -168,6 +168,8 @@ collections:
         name: "home"
         file: "index.njk"
         fields:
+          - { label: "Show in Navigation", name: "showInNav", widget: "boolean", default: true, required: false, hint: "Turn off to remove this page's link from the site nav menu. The page itself stays live at its URL either way." }
+          - { label: "Nav Link Text", name: "navLabel", widget: "string", required: false, hint: "The word(s) shown in the nav menu, e.g. \"Home\"." }
           - { label: "SEO Title", name: "title", widget: "string", required: false }
           - { label: "SEO Description", name: "description", widget: "text", required: false }
           - { label: "Hero Title", name: "heroTitle", widget: "string", required: false }
@@ -209,6 +211,8 @@ collections:
         name: "support"
         file: "support.njk"
         fields:
+          - { label: "Show in Navigation", name: "showInNav", widget: "boolean", default: true, required: false, hint: "Turn off to remove this page's link from the site nav menu. The page itself stays live at its URL either way." }
+          - { label: "Nav Link Text", name: "navLabel", widget: "string", required: false, hint: "The word(s) shown in the nav menu, e.g. \"Give Now\"." }
           - { label: "SEO Title", name: "title", widget: "string", required: false }
           - { label: "SEO Description", name: "description", widget: "text", required: false }
           - { label: "Headline (\"The ask\")", name: "askHeadline", widget: "string", required: false }
@@ -224,6 +228,8 @@ collections:
         name: "about"
         file: "about.njk"
         fields:
+          - { label: "Show in Navigation", name: "showInNav", widget: "boolean", default: true, required: false, hint: "Turn off to remove this page's link from the site nav menu. The page itself stays live at its URL either way." }
+          - { label: "Nav Link Text", name: "navLabel", widget: "string", required: false, hint: "The word(s) shown in the nav menu, e.g. \"About\"." }
           - { label: "SEO Title", name: "title", widget: "string", required: false }
           - { label: "SEO Description", name: "description", widget: "text", required: false }
           - { label: "History Headline", name: "historyHeadline", widget: "string", required: false }
@@ -241,10 +247,39 @@ collections:
           - { label: "Objectives", name: "visionObjectives", widget: "text", required: false }
           - { label: "Closing CTA Text", name: "closingCta", widget: "text", required: false }
 
+      - label: "Perspectives Page (listing)"
+        name: "perspectivesPage"
+        file: "perspectives.njk"
+        fields:
+          - { label: "Show in Navigation", name: "showInNav", widget: "boolean", default: true, required: false, hint: "Turn off to remove this page's link from the site nav menu. The page itself stays live at its URL either way." }
+          - { label: "Nav Link Text", name: "navLabel", widget: "string", required: false, hint: "The word(s) shown in the nav menu, e.g. \"Perspectives\"." }
+          - { label: "SEO Title", name: "title", widget: "string", required: false }
+          - { label: "SEO Description", name: "description", widget: "text", required: false }
+
+      - label: "Newsletter Page (listing)"
+        name: "newsletterPage"
+        file: "newsletter/index.njk"
+        fields:
+          - { label: "Show in Navigation", name: "showInNav", widget: "boolean", default: true, required: false, hint: "Turn off to remove this page's link from the site nav menu. The page itself stays live at its URL either way." }
+          - { label: "Nav Link Text", name: "navLabel", widget: "string", required: false, hint: "The word(s) shown in the nav menu, e.g. \"Newsletter\"." }
+          - { label: "SEO Title", name: "title", widget: "string", required: false }
+          - { label: "SEO Description", name: "description", widget: "text", required: false }
+
+      - label: "Member Hub Page"
+        name: "memberHub"
+        file: "member-hub.njk"
+        fields:
+          - { label: "Show in Navigation", name: "showInNav", widget: "boolean", default: true, required: false, hint: "Turn off to remove this page's link from the site nav menu. The page itself stays live at its URL either way." }
+          - { label: "Nav Link Text", name: "navLabel", widget: "string", required: false, hint: "The word(s) shown in the nav menu, e.g. \"Member Hub\"." }
+          - { label: "SEO Title", name: "title", widget: "string", required: false }
+          - { label: "SEO Description", name: "description", widget: "text", required: false }
+
       - label: "Contact Page"
         name: "contact"
         file: "contact.njk"
         fields:
+          - { label: "Show in Navigation", name: "showInNav", widget: "boolean", default: true, required: false, hint: "Turn off to remove this page's link from the site nav menu. The page itself stays live at its URL either way." }
+          - { label: "Nav Link Text", name: "navLabel", widget: "string", required: false, hint: "The word(s) shown in the nav menu, e.g. \"Contact\"." }
           - { label: "SEO Title", name: "title", widget: "string", required: false }
           - { label: "SEO Description", name: "description", widget: "text", required: false }
           - { label: "Card 1 Title", name: "card1Title", widget: "string", required: false }

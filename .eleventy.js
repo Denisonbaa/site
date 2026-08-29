@@ -62,6 +62,16 @@ module.exports = function(eleventyConfig) {
       .sort((a, b) => a.date - b.date);
   });
 
+  // Main nav — built from any page tagged "navItem", ordered by navOrder,
+  // and skipped when its front matter sets showInNav: false. This is what
+  // lets the CMS's "Show in Navigation" toggle actually hide a page's link.
+  eleventyConfig.addCollection("nav", function(collectionApi) {
+    return collectionApi
+      .getFilteredByTag("navItem")
+      .filter((item) => item.data.showInNav !== false)
+      .sort((a, b) => (a.data.navOrder || 0) - (b.data.navOrder || 0));
+  });
+
   return {
     templateFormats: ["njk", "md", "html"],
     markdownTemplateEngine: "njk",

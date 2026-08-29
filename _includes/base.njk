@@ -34,18 +34,12 @@
     <div class="logo-text">BAA <span class="logo-accent">Denison</span></div>
   </div>
   <ul>
-    <li><a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a></li>
-    <!-- TEMPORARY NAV ITEM — endowment legal-fund campaign. Remove this <li>
-         once the campaign closes: target Sept 26, 2026, or Nov 8, 2026 at
-         the latest if it needs to stay up through Big Red Weekend. Aaron
-         will confirm the exact removal date. Page lives at /support/
-         (support.njk) — delete that file too when this comes down. -->
-    <li><a href="/support/" {% if page.url == "/support/" %}class="active"{% endif %}>Give Now</a></li>
-    <li><a href="/about/" {% if page.url == "/about/" %}class="active"{% endif %}>About</a></li>
-    <li><a href="/perspectives/" {% if page.url == "/perspectives/" or "/perspectives-" in page.url %}class="active"{% endif %}>Perspectives</a></li>
-    <li><a href="/newsletter/" {% if page.url == "/newsletter/" or "/newsletter/" in page.url %}class="active"{% endif %}>Newsletter</a></li>
-    <li><a href="/member-hub/" {% if page.url == "/member-hub/" %}class="active"{% endif %}>Member Hub</a></li>
-    <li><a href="/contact/" {% if page.url == "/contact/" %}class="active"{% endif %}>Contact</a></li>
+    <!-- Built from collections.nav (see .eleventy.js) — each page below sets
+         showInNav / navLabel / navOrder in its own front matter, editable
+         from the CMS's "Show in Navigation" toggle on each Site Page. -->
+    {% for item in collections.nav %}
+    <li><a href="{{ item.url }}" {% if page.url == item.url or (item.data.navMatch and item.data.navMatch in page.url) %}class="active"{% endif %}>{{ item.data.navLabel }}</a></li>
+    {% endfor %}
   </ul>
 </nav>
 
